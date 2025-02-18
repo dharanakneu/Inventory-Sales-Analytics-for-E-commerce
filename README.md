@@ -1,3 +1,4 @@
-# Inventory-Sales-Analytics-for-E-commerce
+# Inventory-Sales-Analytics-for-E-commerce 
+# Objective 
 
-#Objective
+
