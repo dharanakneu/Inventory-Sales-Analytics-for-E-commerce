@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="091C65AB-13FC-BC65-6B66-9F81B64ACCAC" name="Warehouses">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:44:38 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="warehouse_id" id="1D0E0CF3-1675-BC9B-15EA-28CD898D30BE">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:44:48 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="warehouse_code" id="B73A1E1A-8905-2870-D827-B43C1FBF8639">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:46:22 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="city" id="98F8E660-C3DA-B44B-FCE9-77531B0A24CE">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:45:02 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="state" id="3FCF7176-66B8-3061-CDAB-AE270C932645">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:45:40 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="country" id="028D63A9-604F-31C8-9EBA-CADA27D28544">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:46:01 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="manager_name" id="3A6C0517-75EF-3543-CC90-38875C9370AE">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:46:58 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="contact_number" id="F5E944E7-7032-A005-92D8-338F287D48B7">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:47:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0701ABB6-6BF8-337B-F5A2-B7969B6303B5" name="Warehouses PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:44:59 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1D0E0CF3-1675-BC9B-15EA-28CD898D30BE</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

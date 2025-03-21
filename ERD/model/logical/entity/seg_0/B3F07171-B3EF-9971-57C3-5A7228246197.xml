@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3F07171-B3EF-9971-57C3-5A7228246197" name="Inventory">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:41:04 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="inventory_id" id="FFDF8121-1ADA-7577-63AF-3E73F0A58A63">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:41:13 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="stock_level" id="DD084A92-0F2E-9563-FF18-BA8739E0B9E4">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:41:26 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="last_restock_date" id="1EB3A066-A552-2E84-8C1A-4EAF2981A50E">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:41:41 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="reorder_threshold" id="DC3D54DC-1C70-0F91-9783-600E874949C3">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:35:01 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="warehouse_id" id="2EC72D61-EA62-7BB2-89B8-6FB6F03BCF16">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:50:31 UTC</createdTime>
+<generatorID>D4A63AAB-236C-35A9-C5ED-5228C4760E42</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<referedAttribute>1D0E0CF3-1675-BC9B-15EA-28CD898D30BE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="868DDE36-B792-B5ED-A8EC-F444BE0F2BC8" name="Inventory PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:41:23 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>FFDF8121-1ADA-7577-63AF-3E73F0A58A63</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D511B01E-EF9E-4385-46D5-7985DE606134" name="Warehouse_Orders">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:56:39 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="order_id" id="967115B7-C63E-8D55-77DC-BC2D1E768559">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:56:48 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="order_date" id="B453A904-4F73-D622-54BA-C37FD2F6F7AD">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:57:00 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="total_quantity" id="927FC835-E3B1-75B1-0C17-B5A5485FAD42">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:57:20 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="warehouse_id" id="1E7533A2-58FE-A757-B882-3ED3BAA5FF4D">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:58:07 UTC</createdTime>
+<generatorID>57266372-75F0-E5F4-E140-D57C0E0AE214</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<referedAttribute>1D0E0CF3-1675-BC9B-15EA-28CD898D30BE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="supplier_id" id="BF1EBEC5-3AE8-E2BE-EBAE-B89976A8C8F4">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:58:23 UTC</createdTime>
+<generatorID>C0DFE1B3-3F07-0236-B0A8-4CFE79C11EAD</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<referedAttribute>3F08A84A-4AF6-584C-CA03-391BB4CE17AC</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="inventory_id" id="4610C212-5010-D6D7-86D6-40D6ABDFBE3B">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:36:21 UTC</createdTime>
+<generatorID>ED14AFA7-215F-E89C-2C0E-4AAAF5CF9269</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<referedAttribute>FFDF8121-1ADA-7577-63AF-3E73F0A58A63</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D41CE8ED-2416-2E96-8658-F650E596033E" name="Warehouse_Orders PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:56:57 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>967115B7-C63E-8D55-77DC-BC2D1E768559</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

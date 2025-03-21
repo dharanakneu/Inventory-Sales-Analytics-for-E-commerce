@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7269104E-65CF-24D6-A7B1-4ADCBF639FA5" name="Categories">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>E25BB985-5CDA-DDB4-42B2-A3E67F7072F8</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="category_id" id="BE5990ED-2BC1-3283-81D6-FD05136DB2BD">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>C4ECEA29-E69C-86E4-3003-10B3BECE11C7</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="category_name" id="9C85FEA9-52C9-0563-ADD5-A1E7677693A9">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>8CE58C64-4EA9-1345-F6A4-DD5143615EC1</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BF4008EE-EAE0-4884-83DA-CDA802E28700" name="Categories_PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>B017D957-C432-A9EA-CB94-063AE3093CCF</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BE5990ED-2BC1-3283-81D6-FD05136DB2BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="774B93E0-3BD2-B267-0B7A-7C4C2C007274" name="Categories_category_name_UN">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>DD59D25C-5919-D6CD-4AC1-CC41494A4867</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C85FEA9-52C9-0563-ADD5-A1E7677693A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

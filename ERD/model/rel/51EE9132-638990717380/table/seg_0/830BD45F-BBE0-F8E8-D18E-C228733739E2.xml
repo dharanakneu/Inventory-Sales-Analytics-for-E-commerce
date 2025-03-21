@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="830BD45F-BBE0-F8E8-D18E-C228733739E2" name="Products">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>0AFF70DB-9C75-C2DD-175F-24CAF40DAD02</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="product_id" id="E94EA1B8-61BB-7519-9FAC-1AA1C0447DE2">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>4B846C78-EE3C-3437-388C-D30D05CFE499</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="product_name" id="C485722F-B459-AFF2-ADAB-BDF3AEB988DD">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>3B53FF6B-9ED3-0CCB-886C-DF771D41873E</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="price" id="45563473-C17E-E41E-C700-97C561153816">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>81C8889A-46F7-96AB-55D0-9CF0C2DAB9CF</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Categories_category_id" id="E5921EC4-625B-DEFB-1286-A4AC2FE54CEC">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>46C181BF-406D-8118-A290-A1CD172B6630</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9989AA22-6509-95CD-3418-1870F322F6EA" referredColumn="BE5990ED-2BC1-3283-81D6-FD05136DB2BD"/>
+</associations>
+</Column>
+<Column name="Inventory_inventory_id" id="C51A7167-1D50-8639-75FA-0154AF577B0B">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>9C08624D-2A8E-ECC7-4CE7-E919A24E24E2</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CD98610B-A393-4AB6-96AA-2B3028A612B9" referredColumn="A2B7EC45-37FC-8785-3524-EE5D4DEE31D2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="822A5BF2-D4AA-4C56-8EDB-A9A5AE32D040" name="Products_PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>76ECE172-2908-C157-54B8-DDBE71777477</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E94EA1B8-61BB-7519-9FAC-1AA1C0447DE2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6AC06946-008A-1ED9-535C-6D131BC73A32" name="Products__IDX">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>7124394F-1AF9-1297-1B0F-75EF3B0AB7C5</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="C51A7167-1D50-8639-75FA-0154AF577B0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D22DF8A6-770F-8C3E-4AC3-AC3B40BC7D55" name="Products_Inventory_FK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>7124394F-1AF9-1297-1B0F-75EF3B0AB7C5</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C51A7167-1D50-8639-75FA-0154AF577B0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61738D70-CD57-4177-B252-934FD23686C4" name="Products_Categories_FK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>CDD417DC-61D5-CE8C-5D57-0ABAB667D7C8</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E5921EC4-625B-DEFB-1286-A4AC2FE54CEC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

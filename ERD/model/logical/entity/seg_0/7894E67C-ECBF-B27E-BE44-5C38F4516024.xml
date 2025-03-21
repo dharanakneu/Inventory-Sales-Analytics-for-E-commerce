@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7894E67C-ECBF-B27E-BE44-5C38F4516024" name="Returns">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:19:57 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="return_id" id="BC9B5468-CB5F-1837-72F5-739A7D59557D">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:20:03 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="return_amount" id="48E51C6D-4A3B-0D9F-F0CC-9DDF9050FE6D">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:20:40 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="status" id="DDDB72AB-DAB5-2A52-54A1-A12F57217A34">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:21:21 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="reason" id="A0489FED-93FF-9F2A-0C59-C04345FEC0D2">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:21:57 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="returned_quantity" id="C6F31EA7-1110-1114-9C97-595D12C4F65B">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:23:14 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="order_item_id" id="13B60329-05B9-DE6E-3DC0-CC697ABBEF30">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:31:30 UTC</createdTime>
+<generatorID>A6F92C78-6C52-D0EA-36C9-E59F3DDEA706</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<referedAttribute>99AE06B4-3CF0-B110-6D26-D77A45B26267</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8E818E3C-05F6-A1D2-E1F0-590EFE2ADD09" name="Returns PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:20:13 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>BC9B5468-CB5F-1837-72F5-739A7D59557D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

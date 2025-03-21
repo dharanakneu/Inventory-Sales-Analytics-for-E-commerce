@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8EB41552-D6BC-554D-4306-A40EE5CB4E9D" name="Supplier_Products">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:53:27 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="96919774-2A58-F143-152F-3D267766D16C">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:53:45 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="supply_price" id="AB93C034-F010-DC05-5F7C-D9C5EE598156">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:53:59 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="product_id" id="6D737D11-6D8E-238E-84C9-93D9A18C6A7A">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:55:12 UTC</createdTime>
+<generatorID>532EC518-BBF1-0F90-B35E-6F7406644336</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<referedAttribute>4B846C78-EE3C-3437-388C-D30D05CFE499</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="supplier_id" id="3D36E12D-1AAF-D7FA-D09B-29AF2AC09545">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:55:17 UTC</createdTime>
+<generatorID>18AB8D0D-223E-C600-6BEB-85CC30525CFA</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<referedAttribute>3F08A84A-4AF6-584C-CA03-391BB4CE17AC</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D045151B-5617-4600-C8A2-A6681F863A25" name="Supplier_Products PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 22:53:57 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="384F06CE-75A2-97C4-C1FD-4AD98966559C" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>96919774-2A58-F143-152F-3D267766D16C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

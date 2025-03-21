@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3EE967A0-AD67-36E2-59A5-9D5AB3DF84E8" name="Customers">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:33:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="customer_id" id="E8D84092-13E9-D1FC-946D-BEB25FB2EBFD">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:33:49 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="first_name" id="BF16F5EE-C597-64C0-9F87-F74B5B13CB0F">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:37:57 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="last_name" id="A234820D-81E3-E672-82F2-FA51B9CF1B69">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:42:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="F83B03ED-B12C-109A-3162-FB89D316E7AD">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:42:45 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="phone" id="432157E6-0C36-02E2-FEA1-5209BF80ABDB">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:43:07 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="dob" id="F0C1E0FD-1306-DBE5-A54F-BDDC9393C330">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:43:32 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="gender" id="998AFD93-F7D2-1830-AE70-95B204FF9E84">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:43:52 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CB35022E-9DF2-59EF-0588-E5D0EC1CDE4C" name="Customers PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-18 21:37:25 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>E8D84092-13E9-D1FC-946D-BEB25FB2EBFD</newElementsIDs>
+<usedAttributes>
+<attributeRef>E8D84092-13E9-D1FC-946D-BEB25FB2EBFD</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="DA89E6FA-F0DF-7EA0-79DA-0FF80C693F25" name="Phone_Unique">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-20 19:53:44 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="51EE9132-FE1C-439D-D601-638990717380" value="true"/>
+</engineerTo>
+<newElementsIDs>432157E6-0C36-02E2-FEA1-5209BF80ABDB</newElementsIDs>
+<usedAttributes>
+<attributeRef>432157E6-0C36-02E2-FEA1-5209BF80ABDB</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

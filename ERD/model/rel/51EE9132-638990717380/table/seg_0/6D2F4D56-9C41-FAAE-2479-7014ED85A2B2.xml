@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6D2F4D56-9C41-FAAE-2479-7014ED85A2B2" name="Warehouse_Orders">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>D511B01E-EF9E-4385-46D5-7985DE606134</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="order_id" id="90787D8D-42DD-8676-6C84-AFCBC9EDF141">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>967115B7-C63E-8D55-77DC-BC2D1E768559</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="order_date" id="BAB7C6D7-DC11-2FCD-116C-C19D719EC1BB">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>B453A904-4F73-D622-54BA-C37FD2F6F7AD</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_quantity" id="5CB31477-74F3-5CC4-DD42-ACFAEA1B3213">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>927FC835-E3B1-75B1-0C17-B5A5485FAD42</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Warehouses_warehouse_id" id="6F63A93A-90AA-FBF6-1100-FCFAD893E966">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>1E7533A2-58FE-A757-B882-3ED3BAA5FF4D</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8A605F9C-6181-BDDA-A414-BAE3200FFF25" referredColumn="84AEAB46-497B-87B5-AF52-D68F3544AE1E"/>
+</associations>
+</Column>
+<Column name="Suppliers_supplier_id" id="6A10E482-6A22-A009-8A95-682716803154">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>BF1EBEC5-3AE8-E2BE-EBAE-B89976A8C8F4</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6C29101B-0145-81A3-AE3A-559CF153640F" referredColumn="D46F257A-49EF-51FB-9CAF-0EF4C17217A9"/>
+</associations>
+</Column>
+<Column name="Inventory_inventory_id" id="B1264AB6-F33D-28A6-15D9-A46CFFEE9C7A">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>4610C212-5010-D6D7-86D6-40D6ABDFBE3B</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="96BC4D02-3FAE-C4E4-2390-602A468AF93E" referredColumn="A2B7EC45-37FC-8785-3524-EE5D4DEE31D2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1D935A20-57CC-1394-CD68-12D91A196216" name="Warehouse_Orders_PK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>D41CE8ED-2416-2E96-8658-F650E596033E</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="90787D8D-42DD-8676-6C84-AFCBC9EDF141"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E91BCE76-9853-CFEE-9D99-62F67BA6D43E" name="Warehouse_Orders_Warehouses_FK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>57266372-75F0-E5F4-E140-D57C0E0AE214</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6F63A93A-90AA-FBF6-1100-FCFAD893E966"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00B0367B-4300-5514-07CC-CB90C481C7BC" name="Warehouse_Orders_Suppliers_FK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>C0DFE1B3-3F07-0236-B0A8-4CFE79C11EAD</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6A10E482-6A22-A009-8A95-682716803154"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FBCBB53F-04D5-9262-421D-0EAD53FC4FC7" name="Warehouse_Orders_Inventory_FK">
+<createdBy>dharanakashyap</createdBy>
+<createdTime>2025-03-21 15:37:03 UTC</createdTime>
+<generatorID>ED14AFA7-215F-E89C-2C0E-4AAAF5CF9269</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B1264AB6-F33D-28A6-15D9-A46CFFEE9C7A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
