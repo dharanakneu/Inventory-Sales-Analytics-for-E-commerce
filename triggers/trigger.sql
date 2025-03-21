@@ -1,12 +1,11 @@
-
-#trigger for updating the inventory 
-CREATE OR REPLACE TRIGGER trg_update_inventory_after_order
+# Trigger for updating inventory on placing an order
+CREATE OR REPLACE TRIGGER update_inventory_on_order
 AFTER INSERT ON Order_Items
 FOR EACH ROW
 BEGIN
   UPDATE Inventory
-  SET stock_level = stock_level - :NEW.product_quantity
-  WHERE inventory_id = (SELECT inventory_id FROM Products WHERE product_id = :NEW.Products_product_id);
+  SET stock_level = stock_level - :NEW.quantity
+  WHERE product_id = :NEW.product_id;
 END;
-
+/
 
