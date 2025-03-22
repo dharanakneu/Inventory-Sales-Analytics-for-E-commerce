@@ -1,4 +1,4 @@
-# Trigger for updating inventory on placing an order
+# Reduce Inventory Stock (update inventory on order)
 CREATE OR REPLACE TRIGGER update_inventory_on_order
 AFTER INSERT ON Order_Items
 FOR EACH ROW
@@ -8,4 +8,3 @@ BEGIN
   WHERE product_id = :NEW.product_id;
 END;
 /
-
