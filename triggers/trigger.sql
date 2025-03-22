@@ -1,5 +1,4 @@
-
-# Ensure Stock Availability before placing an Order
+-- Ensure Stock Availability before placing an Order
 CREATE OR REPLACE TRIGGER trg_check_stock_before_order
 BEFORE INSERT ON Order_Items
 FOR EACH ROW
@@ -19,7 +18,7 @@ END;
 /
 
 
-#Update Inventory After Order Placement
+-- Update Inventory After Order Placement
 CREATE OR REPLACE TRIGGER trg_update_stock_after_order
 AFTER INSERT ON Order_Items
 FOR EACH ROW
@@ -31,7 +30,7 @@ END;
 /
 
 
-#Automatically apply discounts before inserting order item
+-- Automatically Apply Discounts before inserting order item
 CREATE OR REPLACE TRIGGER trg_apply_discount
 BEFORE INSERT ON Order_Items
 FOR EACH ROW
@@ -52,7 +51,7 @@ END;
 /
 
 
-#Enforce maximum return window 
+-- Enforce Maximum Return Window
 CREATE OR REPLACE TRIGGER trg_prevent_late_returns
 BEFORE INSERT ON Returns
 FOR EACH ROW
@@ -71,7 +70,8 @@ BEGIN
 END;
 /
 
-#Calculate order total
+
+-- Calculate Order Total
 CREATE OR REPLACE TRIGGER trg_update_order_total
 AFTER INSERT OR UPDATE OR DELETE ON Order_Items
 FOR EACH ROW
@@ -85,7 +85,7 @@ END;
 /
 
 
-#Prevent Over-Selling
+-- Prevent Over-Selling
 CREATE OR REPLACE TRIGGER trg_check_stock_before_order
 BEFORE INSERT ON Order_Items
 FOR EACH ROW
@@ -109,7 +109,7 @@ END;
 /
 
 
-#Update inventory after warehouse order
+-- Update Inventory after Warehouse Order
 CREATE OR REPLACE TRIGGER update_inventory_warehouse_order
 AFTER INSERT ON Warehouse_Orders
 FOR EACH ROW
@@ -133,7 +133,8 @@ EXCEPTION
 END;
 /
 
-#Update return status and inventory 
+
+-- Update Return Status and Inventory 
 CREATE OR REPLACE TRIGGER update_return_and_inventory
 AFTER INSERT ON Returns
 FOR EACH ROW
@@ -181,4 +182,70 @@ EXCEPTION
     RAISE_APPLICATION_ERROR(-20008, 'Error processing return update.');
 END;
 /
+
+
+-- Prevent Negative Inventory
+CREATE OR REPLACE TRIGGER trg_prevent_negative_inventory
+BEFORE UPDATE ON Inventory
+FOR EACH ROW
+BEGIN
+  IF :NEW.stock_level < 0 THEN
+    RAISE_APPLICATION_ERROR(-20010, 'Inventory cannot go negative.');
+  END IF;
+END;
+/
+
+
+-- Recalculate Discounts on Updates
+CREATE OR REPLACE TRIGGER trg_apply_discount_on_update
+BEFORE UPDATE ON Order_Items
+FOR EACH ROW
+DECLARE
+    v_discount_percentage NUMBER(5,2);
+BEGIN
+    -- Get discount percentage if active
+    SELECT discount_percentage INTO v_discount_percentage
+    FROM Discounts
+    WHERE product_id = :NEW.product_id
+      AND SYSDATE BETWEEN start_date AND end_date;
+
+    -- Apply discount if available
+    IF v_discount_percentage IS NOT NULL THEN
+        :NEW.unit_price := :NEW.unit_price * (1 - v_discount_percentage / 100);
+    END IF;
+END;
+/
+
+
+-- Track Order Item Deletions (Update Total)
+CREATE OR REPLACE TRIGGER trg_update_order_total_on_delete
+AFTER DELETE ON Order_Items
+FOR EACH ROW
+BEGIN
+  UPDATE Customer_Orders
+  SET total_amount = total_amount - (:OLD.product_quantity * :OLD.unit_price)
+  WHERE order_id = :OLD.order_id;
+END;
+/
+
+
+-- Prevent Overlapping Discount Periods
+CREATE OR REPLACE TRIGGER trg_prevent_overlapping_discounts
+BEFORE INSERT ON Discounts
+FOR EACH ROW
+DECLARE
+    v_existing_discount_count INTEGER;
+BEGIN
+    SELECT COUNT(*)
+    INTO v_existing_discount_count
+    FROM Discounts
+    WHERE product_id = :NEW.product_id
+      AND (SYSDATE BETWEEN start_date AND end_date
+           OR :NEW.start_date BETWEEN start_date AND end_date);
+    IF v_existing_discount_count > 0 THEN
+        RAISE_APPLICATION_ERROR(-20009, 'Discount period overlaps with an existing discount.');
+    END IF;
+END;
+/
+
 
