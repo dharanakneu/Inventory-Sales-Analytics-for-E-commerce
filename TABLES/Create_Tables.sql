@@ -195,3 +195,21 @@ CREATE TABLE Warehouse_Orders (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
+
+-- Creating indexes
+-- Indexes on foreign key columns
+CREATE INDEX idx_inventory_warehouse_id ON Inventory (warehouse_id);
+CREATE INDEX idx_products_category_id ON Products (category_id);
+CREATE INDEX idx_addresses_customer_id ON Addresses (customer_id);
+CREATE INDEX idx_customer_orders_customer_id ON Customer_Orders (customer_id);
+CREATE INDEX idx_customer_orders_address_id ON Customer_Orders (address_id);
+CREATE INDEX idx_payments_order_id ON Payments (order_id);
+CREATE INDEX idx_order_items_product_id ON Order_Items (product_id);
+CREATE INDEX idx_order_items_order_id ON Order_Items (order_id);
+CREATE INDEX idx_discounts_product_id ON Discounts (product_id);
+CREATE INDEX idx_suppliers_products_product_id ON Suppliers_Products (product_id);
+CREATE INDEX idx_suppliers_products_supplier_id ON Suppliers_Products (supplier_id);
+CREATE INDEX idx_warehouse_orders_warehouse_id ON Warehouse_Orders (warehouse_id);
+CREATE INDEX idx_warehouse_orders_supplier_id ON Warehouse_Orders (supplier_id);
+CREATE INDEX idx_warehouse_orders_inventory_id ON Warehouse_Orders (inventory_id);
