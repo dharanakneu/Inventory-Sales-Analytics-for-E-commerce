@@ -213,3 +213,13 @@ CREATE INDEX idx_suppliers_products_supplier_id ON Suppliers_Products (supplier_
 CREATE INDEX idx_warehouse_orders_warehouse_id ON Warehouse_Orders (warehouse_id);
 CREATE INDEX idx_warehouse_orders_supplier_id ON Warehouse_Orders (supplier_id);
 CREATE INDEX idx_warehouse_orders_inventory_id ON Warehouse_Orders (inventory_id);
+
+-- Indexes for commonly queried fields
+CREATE INDEX idx_products_product_name ON Products (product_name);
+CREATE INDEX idx_customers_email ON Customers (email);
+CREATE INDEX idx_orders_order_date ON Customer_Orders (order_date);
+CREATE INDEX idx_payments_payment_method ON Payments (payment_method);
+CREATE INDEX idx_returns_status ON Returns (status);
+CREATE INDEX idx_discounts_promo_code ON Discounts (promo_code);
+CREATE INDEX idx_suppliers_supplier_name ON Suppliers (supplier_name);
+CREATE INDEX idx_warehouse_orders_order_date ON Warehouse_Orders (order_date);
