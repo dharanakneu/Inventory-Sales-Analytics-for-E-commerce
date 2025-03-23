@@ -27,26 +27,6 @@ END;
 /
 
 
-
--- Creating sequences
-CREATE SEQUENCE SEQ_CUSTOMER_ID START WITH 10001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_ADDRESS_ID START WITH 20001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_CUSTOMER_ORDER_ID START WITH 30001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_PAYMENT_ID START WITH 40001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_ORDER_ITEM_ID START WITH 50001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_RETURN_ID START WITH 60001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_PRODUCT_ID START WITH 70001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_CATEGORY_ID START WITH 80001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_DISCOUNT_ID START WITH 90001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_SUPPLIER_ID START WITH 100001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_INVENTORY_ID START WITH 110001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_WAREHOUSE_ID START WITH 120001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_SUPPLIERS_PRODUCTS_ID START WITH 130001 INCREMENT BY 1;
-CREATE SEQUENCE SEQ_WAREHOUSE_ORDERS_ID START WITH 140001 INCREMENT BY 1;
-
-
-
-
 -- Creating tables
 
 CREATE TABLE Categories (
@@ -197,33 +177,3 @@ CREATE TABLE Warehouse_Orders (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-
-
--- Creating indexes
--- Indexes for frequently searched columns and foreign keys
--- Indexes on foreign key columns
-CREATE INDEX idx_inventory_warehouse_id ON Inventory (warehouse_id);
-CREATE INDEX idx_products_category_id ON Products (category_id);
-CREATE INDEX idx_addresses_customer_id ON Addresses (customer_id);
-CREATE INDEX idx_customer_orders_customer_id ON Customer_Orders (customer_id);
-CREATE INDEX idx_customer_orders_address_id ON Customer_Orders (address_id);
-CREATE INDEX idx_payments_order_id ON Payments (order_id);
-CREATE INDEX idx_order_items_product_id ON Order_Items (product_id);
-CREATE INDEX idx_order_items_order_id ON Order_Items (order_id);
-CREATE INDEX idx_discounts_product_id ON Discounts (product_id);
-CREATE INDEX idx_suppliers_products_product_id ON Suppliers_Products (product_id);
-CREATE INDEX idx_suppliers_products_supplier_id ON Suppliers_Products (supplier_id);
-CREATE INDEX idx_warehouse_orders_warehouse_id ON Warehouse_Orders (warehouse_id);
-CREATE INDEX idx_warehouse_orders_supplier_id ON Warehouse_Orders (supplier_id);
-CREATE INDEX idx_warehouse_orders_inventory_id ON Warehouse_Orders (inventory_id);
-
--- Indexes for commonly queried fields
-CREATE INDEX idx_products_product_name ON Products (product_name);
-CREATE INDEX idx_customers_email ON Customers (email);
-CREATE INDEX idx_orders_order_date ON Customer_Orders (order_date);
-CREATE INDEX idx_payments_payment_method ON Payments (payment_method);
-CREATE INDEX idx_returns_status ON Returns (status);
-CREATE INDEX idx_discounts_promo_code ON Discounts (promo_code);
-CREATE INDEX idx_suppliers_supplier_name ON Suppliers (supplier_name);
-CREATE INDEX idx_warehouse_orders_order_date ON Warehouse_Orders (order_date);
