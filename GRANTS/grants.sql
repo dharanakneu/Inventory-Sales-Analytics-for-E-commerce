@@ -87,3 +87,19 @@ GRANT SELECT ON suppliers_products TO ECOMM_ANALYST;
 GRANT SELECT ON warehouses TO ECOMM_ANALYST;
 GRANT SELECT ON warehouse_orders TO ECOMM_ANALYST;
 GRANT SELECT ON customers TO ECOMM_ANALYST;
+
+
+-- Creating Users and Assigning Roles
+CREATE USER ecomm_admin_user IDENTIFIED BY InvSalAdmin123;
+GRANT ECOMM_ADMIN TO ecomm_admin_user;
+
+CREATE USER ecomm_inventory_user IDENTIFIED BY InvManager123;
+GRANT ECOMM_INVENTORY_MANAGER TO ecomm_inventory_user;
+
+CREATE USER ecomm_sales_user IDENTIFIED BY SalManager123;
+GRANT ECOMM_SALES_MANAGER TO ecomm_sales_user;
+
+CREATE USER ecomm_analyst_user IDENTIFIED BY InvSalAna123;
+GRANT ECOMM_ANALYST TO ecomm_analyst_user;
+
+COMMIT;
