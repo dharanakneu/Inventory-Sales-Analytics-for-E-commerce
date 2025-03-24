@@ -33,7 +33,7 @@ SELECT
     a.state AS region,
     SUM(co.total_amount) AS total_sales
 FROM Customer_Orders co
-JOIN Addresses a ON co.address_id = a.address_id
+JOIN Addresses a ON co.shipping_address_id = a.address_id
 GROUP BY a.state;
 
 -- 5. ✅ Top Selling Products
