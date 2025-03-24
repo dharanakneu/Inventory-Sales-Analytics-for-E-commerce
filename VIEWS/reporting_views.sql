@@ -24,8 +24,6 @@ FROM Customer_Orders
 GROUP BY TO_CHAR(order_date, 'YYYY'), TO_CHAR(order_date, 'WW')
 ORDER BY sales_year, sales_week;
 
--- 3. ❌ Product_Wise_Price_Changes
--- Skipped: Product_Price_History table not available in schema
 
 -- 4. ✅ Total Sales Region Wise
 CREATE OR REPLACE VIEW Total_Sales_Region_Wise AS
@@ -36,6 +34,7 @@ FROM Customer_Orders co
 JOIN Customers c ON co.customer_id = c.customer_id
 JOIN Addresses a ON c.customer_id = a.customer_id
 GROUP BY a.state;
+
 
 -- 5. ✅ Top Selling Products
 CREATE OR REPLACE VIEW Top_Selling_Products AS
