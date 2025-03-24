@@ -102,12 +102,12 @@ CREATE TABLE Customers (
 
 CREATE TABLE Addresses (
     address_id INTEGER PRIMARY KEY,
-    address_line VARCHAR2(255),
-    city VARCHAR2(100),
-    state VARCHAR2(100),
-    zip_code VARCHAR2(20),
+    address_line VARCHAR2(255) NOT NULL,
+    city VARCHAR2(100) NOT NULL,
+    state VARCHAR2(100) NOT NULL,
+    zip_code VARCHAR2(20) NOT NULL,
     address_type VARCHAR2(50),
-    customer_id INTEGER REFERENCES Customers(customer_id) ON DELETE CASCADE,
+    customer_id INTEGER NOT NULL REFERENCES Customers(customer_id) ON DELETE CASCADE,
     is_default CHAR(1) DEFAULT 'N',
     is_deleted CHAR(1) DEFAULT 'N',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
