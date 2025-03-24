@@ -108,10 +108,11 @@ CREATE TABLE Addresses (
     zip_code VARCHAR2(20),
     address_type VARCHAR2(50),
     customer_id INTEGER REFERENCES Customers(customer_id) ON DELETE CASCADE,
-    is_default CHAR(1),
-    is_deleted CHAR(1),
+    is_default CHAR(1) DEFAULT 'N',
+    is_deleted CHAR(1) DEFAULT 'N',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_isdefaultdeleted_addresses CHECK (is_default IN ('Y', 'N') AND is_deleted IN ('Y', 'N'))
 );
 
 CREATE TABLE Customer_Orders (
