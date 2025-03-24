@@ -98,6 +98,23 @@ JOIN Customer_Orders co ON co.customer_id = c.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name
 ORDER BY total_orders DESC;
 
+-- 10. Customer Behavior View 
+CREATE OR REPLACE VIEW Customer_Behavior_Insights AS
+SELECT 
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    COUNT(co.order_id) AS total_orders,
+    ROUND(SUM(co.total_amount), 2) AS total_spent,
+    ROUND(AVG(co.total_amount), 2) AS avg_order_value,
+    MIN(co.order_date) AS first_order_date,
+    MAX(co.order_date) AS last_order_date,
+    ROUND(SYSDATE - MAX(co.order_date)) AS days_since_last_order
+FROM Customers c
+JOIN Customer_Orders co ON c.customer_id = co.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY total_orders DESC;
+
+
 -- ======================
 -- End of Views Section
 -- ======================
