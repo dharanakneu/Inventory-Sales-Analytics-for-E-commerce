@@ -506,3 +506,5 @@ VALUES (SEQ_WAREHOUSE_ORDERS_ID.NEXTVAL, DATE '2024-04-05', 220, 120009, 100009,
 
 INSERT INTO Warehouse_Orders (order_id, order_date, total_quantity, warehouse_id, supplier_id, inventory_id, created_at, updated_at)
 VALUES (SEQ_WAREHOUSE_ORDERS_ID.NEXTVAL, DATE '2024-04-10', 180, 120010, 100010, 110010, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+COMMIT;
