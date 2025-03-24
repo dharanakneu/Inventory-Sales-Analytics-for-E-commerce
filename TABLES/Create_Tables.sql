@@ -64,11 +64,14 @@ CREATE TABLE Warehouses (
     state VARCHAR2(100) NOT NULL, 
     country VARCHAR2(100) NOT NULL,    
     manager_name VARCHAR2(255) NOT NULL,
-    contact_number VARCHAR2(15) NOT NULL, 
+    contact_number VARCHAR2(20) NOT NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT chk_contact_number CHECK (REGEXP_LIKE(contact_number, '^[0-9+\- ]+$'))
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, 
+    CONSTRAINT chk_contact_number CHECK (
+        REGEXP_LIKE(contact_number, '^[0-9 +\\-]+$')
+    )
 );
+
 
 CREATE TABLE Inventory (
     inventory_id INTEGER PRIMARY KEY,  
@@ -83,14 +86,15 @@ CREATE TABLE Inventory (
 CREATE TABLE Products (
     product_id INTEGER PRIMARY KEY, 
     product_name VARCHAR2(255) NOT NULL UNIQUE, 
-    price NUMBER(10,2) NOT NULL CHECK (price >= 0),  
+    price NUMBER(10,2) NOT NULL,
     category_id INTEGER NOT NULL REFERENCES Categories(category_id) ON DELETE CASCADE, 
     inventory_id INTEGER UNIQUE NOT NULL REFERENCES Inventory(inventory_id) ON DELETE CASCADE,  
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT chk_product_name CHECK (LENGTH(TRIM(product_name)) > 0),
-    CONSTRAINT chk_price CHECK (price >= 0)  
+    CONSTRAINT chk_price CHECK (price >= 0)
 );
+
 
 
 CREATE TABLE Customers (
@@ -103,9 +107,12 @@ CREATE TABLE Customers (
     gender CHAR(1) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT chk_email_format CHECK (email LIKE '%@%.%'),
+    CONSTRAINT chk_email_format CHECK (
+        REGEXP_LIKE(email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+    ),
     CONSTRAINT chk_gender_customers CHECK (gender IN ('M', 'F', 'O'))
 );
+
 
 CREATE TABLE Addresses (
     address_id INTEGER PRIMARY KEY,
@@ -150,8 +157,8 @@ CREATE TABLE Payments (
 
 CREATE TABLE Order_Items (
     order_item_id INTEGER PRIMARY KEY,  
-    product_quantity INTEGER NOT NULL CHECK (product_quantity > 0),  
-    unit_price NUMBER(10,2) NOT NULL CHECK (unit_price >= 0),  
+    product_quantity INTEGER NOT NULL,
+    unit_price NUMBER(10,2) NOT NULL,
     product_id INTEGER NOT NULL REFERENCES Products(product_id) ON DELETE CASCADE,  
     order_id INTEGER NOT NULL REFERENCES Customer_Orders(order_id) ON DELETE CASCADE,  
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
@@ -161,12 +168,13 @@ CREATE TABLE Order_Items (
 );
 
 
+
 CREATE TABLE Returns (
     return_id INTEGER PRIMARY KEY,  
-    return_amount NUMBER(10,2) NOT NULL CHECK (return_amount >= 0),  
+    return_amount NUMBER(10,2) NOT NULL,
     status VARCHAR2(50) NOT NULL,  
     reason VARCHAR2(255),  
-    returned_quantity INTEGER NOT NULL CHECK (returned_quantity > 0),  
+    returned_quantity INTEGER NOT NULL,
     order_item_id INTEGER NOT NULL UNIQUE REFERENCES Order_Items(order_item_id) ON DELETE CASCADE,  
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
@@ -178,7 +186,7 @@ CREATE TABLE Returns (
 CREATE TABLE Discounts (
     discount_id INTEGER PRIMARY KEY,  
     promo_code VARCHAR2(20) NOT NULL UNIQUE, 
-    discount_percentage NUMBER(5,2) NOT NULL CHECK (discount_percentage >= 0 AND discount_percentage <= 100), 
+    discount_percentage NUMBER(5,2) NOT NULL,
     start_date DATE NOT NULL,  
     end_date DATE NOT NULL, 
     product_id INTEGER REFERENCES Products(product_id) ON DELETE CASCADE, 
@@ -193,13 +201,12 @@ CREATE TABLE Discounts (
 CREATE TABLE Suppliers (
     supplier_id INTEGER PRIMARY KEY, 
     supplier_name VARCHAR2(255) NOT NULL, 
-    contact_number VARCHAR2(15) NOT NULL, 
+    contact_number VARCHAR2(15) NOT NULL UNIQUE, 
     email VARCHAR2(255) NOT NULL UNIQUE,  
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT chk_email_format_unique CHECK (REGEXP_LIKE(email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')) ENABLE, 
-    CONSTRAINT chk_contact_number_unique CHECK (REGEXP_LIKE(contact_number, '^\d{10}$')) ENABLE 
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
+
 
 
 CREATE TABLE Suppliers_Products (
@@ -255,3 +262,4 @@ CREATE INDEX idx_payments_payment_method ON Payments (payment_method);
 CREATE INDEX idx_returns_status ON Returns (status);
 CREATE INDEX idx_suppliers_supplier_name ON Suppliers (supplier_name);
 CREATE INDEX idx_warehouse_orders_order_date ON Warehouse_Orders (order_date);
+
