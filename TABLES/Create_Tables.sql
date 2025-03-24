@@ -72,7 +72,6 @@ CREATE TABLE Warehouses (
     )
 );
 
-
 CREATE TABLE Inventory (
     inventory_id INTEGER PRIMARY KEY,  
     stock_level INTEGER NOT NULL CHECK (stock_level >= 0),  
@@ -95,8 +94,6 @@ CREATE TABLE Products (
     CONSTRAINT chk_price CHECK (price >= 0)
 );
 
-
-
 CREATE TABLE Customers (
     customer_id INTEGER PRIMARY KEY,
     first_name VARCHAR2(50) NOT NULL,
@@ -112,7 +109,6 @@ CREATE TABLE Customers (
     ),
     CONSTRAINT chk_gender_customers CHECK (gender IN ('M', 'F', 'O'))
 );
-
 
 CREATE TABLE Addresses (
     address_id INTEGER PRIMARY KEY,
@@ -167,8 +163,6 @@ CREATE TABLE Order_Items (
     CONSTRAINT chk_unit_price CHECK (unit_price >= 0)  
 );
 
-
-
 CREATE TABLE Returns (
     return_id INTEGER PRIMARY KEY,  
     return_amount NUMBER(10,2) NOT NULL,
@@ -197,7 +191,6 @@ CREATE TABLE Discounts (
     CONSTRAINT chk_dates CHECK (start_date <= end_date) 
 );
 
-
 CREATE TABLE Suppliers (
     supplier_id INTEGER PRIMARY KEY, 
     supplier_name VARCHAR2(255) NOT NULL, 
@@ -206,8 +199,6 @@ CREATE TABLE Suppliers (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-
-
 
 CREATE TABLE Suppliers_Products (
     supplier_product_id INTEGER PRIMARY KEY,  
@@ -220,7 +211,6 @@ CREATE TABLE Suppliers_Products (
     CONSTRAINT fk_supplier FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id) ON DELETE CASCADE,
     CONSTRAINT uq_supplier_product UNIQUE (product_id, supplier_id) 
 );
-
 
 CREATE TABLE Warehouse_Orders (
     order_id INTEGER PRIMARY KEY,  
