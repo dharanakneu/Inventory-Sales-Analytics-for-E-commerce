@@ -117,13 +117,15 @@ CREATE TABLE Addresses (
 
 CREATE TABLE Customer_Orders (
     order_id INTEGER PRIMARY KEY,
-    order_date DATE,
-    total_amount NUMBER(10,2),
-    status VARCHAR2(20),
-    customer_id INTEGER REFERENCES Customers(customer_id) ON DELETE CASCADE,
-    address_id INTEGER REFERENCES Addresses(address_id) ON DELETE CASCADE,
+    order_date DATE DEFAULT CURRENT_DATE NOT NULL,
+    total_amount NUMBER(10,2) NOT NULL,
+    order_status VARCHAR2(20) NOT NULL,
+    customer_id INTEGER NOT NULL REFERENCES Customers(customer_id) ON DELETE CASCADE,
+    shipping_address_id INTEGER NOT NULL REFERENCES Addresses(address_id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_status_orders CHECK (order_status IN ('Pending', 'Shipped', 'Delivered', 'Cancelled')),
+    CONSTRAINT chk_total_amount_orders CHECK (total_amount >= 0)
 );
 
 CREATE TABLE Payments (
