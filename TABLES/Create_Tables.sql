@@ -252,3 +252,4 @@ CREATE INDEX idx_returns_status ON Returns (status);
 CREATE INDEX idx_suppliers_supplier_name ON Suppliers (supplier_name);
 CREATE INDEX idx_warehouse_orders_order_date ON Warehouse_Orders (order_date);
 
+COMMIT;

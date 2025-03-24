@@ -114,6 +114,8 @@ JOIN Customer_Orders co ON c.customer_id = co.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name
 ORDER BY total_orders DESC;
 
+COMMIT;
+
 
 -- ======================
 -- End of Views Section
