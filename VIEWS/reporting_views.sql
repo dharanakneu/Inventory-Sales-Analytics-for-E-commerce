@@ -2,7 +2,7 @@
 -- Section 2: Reporting Views
 -- ======================
 
--- 1. ✅ Current Inventory Status (Warehouse-level only)
+-- 1. Current Inventory Status (Warehouse-level only)
 CREATE OR REPLACE VIEW Current_Inventory_Status AS
 SELECT 
     i.inventory_id,
@@ -14,7 +14,7 @@ SELECT
 FROM Inventory i
 JOIN Warehouses w ON i.warehouse_id = w.warehouse_id;
 
--- 2. ✅ Weekly Sales Report
+-- 2. Weekly Sales Report
 CREATE OR REPLACE VIEW Week_Wise_Sales AS
 SELECT 
     TO_CHAR(order_date, 'WW') AS sales_week,
@@ -25,7 +25,7 @@ GROUP BY TO_CHAR(order_date, 'YYYY'), TO_CHAR(order_date, 'WW')
 ORDER BY sales_year, sales_week;
 
 
--- 4. ✅ Total Sales Region Wise
+-- 4. Total Sales Region Wise
 CREATE OR REPLACE VIEW Total_Sales_Region_Wise AS
 SELECT 
     a.state AS region,
@@ -36,7 +36,7 @@ JOIN Addresses a ON c.customer_id = a.customer_id
 GROUP BY a.state;
 
 
--- 5. ✅ Top Selling Products
+-- 5. Top Selling Products
 CREATE OR REPLACE VIEW Top_Selling_Products AS
 SELECT 
     oi.product_id,
@@ -47,7 +47,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY oi.product_id, p.product_name
 ORDER BY total_units_sold DESC;
 
--- 6. ⚠ Customer Return Trends (Modified: join via ORDER_ITEM_ID, not PRODUCT_ID)
+-- 6. Customer Return Trends (Modified: join via ORDER_ITEM_ID, not PRODUCT_ID)
 CREATE OR REPLACE VIEW Customer_Return_Trends AS
 SELECT 
     oi.product_id,
@@ -60,7 +60,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY oi.product_id, p.product_name
 ORDER BY total_returns DESC;
 
--- 7. ✅ Discount Effectiveness (product_id is optional in Discounts)
+-- 7. Discount Effectiveness (product_id is optional in Discounts)
 CREATE OR REPLACE VIEW Discount_Effectiveness AS
 SELECT 
     d.product_id,
@@ -75,7 +75,7 @@ JOIN Customer_Orders co ON co.order_id = oi.order_id
 GROUP BY d.product_id, p.product_name, d.discount_percentage
 ORDER BY total_discount_sales DESC;
 
--- 8. ✅ Supplier Lead Times (Final Fix using NUMTODSINTERVAL to handle timestamp subtraction)
+-- 8. Supplier Lead Times (Final Fix using NUMTODSINTERVAL to handle timestamp subtraction)
 CREATE OR REPLACE VIEW Supplier_Lead_Times AS
 SELECT 
     s.supplier_id,
@@ -85,7 +85,7 @@ FROM Warehouse_Orders wo
 JOIN Suppliers s ON s.supplier_id = wo.supplier_id
 GROUP BY s.supplier_id, s.supplier_name;
 
--- 9. ✅ Customer Purchase Frequency
+-- 9. Customer Purchase Frequency
 CREATE OR REPLACE VIEW Customer_Purchase_Frequency AS
 SELECT 
     c.customer_id,
