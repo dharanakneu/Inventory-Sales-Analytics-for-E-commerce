@@ -88,12 +88,12 @@ CREATE TABLE Products (
 
 CREATE TABLE Customers (
     customer_id INTEGER PRIMARY KEY,
-    first_name VARCHAR2(50),
-    last_name VARCHAR2(50),
-    email VARCHAR2(255),
-    phone VARCHAR2(15) UNIQUE,
-    dob DATE,
-    gender CHAR(1),
+    first_name VARCHAR2(50) NOT NULL,
+    last_name VARCHAR2(50) NOT NULL,
+    email VARCHAR2(255) NOT NULL,
+    phone VARCHAR2(15) UNIQUE NOT NULL,
+    dob DATE NOT NULL,
+    gender CHAR(1) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT chk_email_format CHECK (email LIKE '%@%.%'),
