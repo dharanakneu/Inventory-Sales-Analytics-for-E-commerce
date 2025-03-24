@@ -67,11 +67,6 @@ CREATE TABLE Warehouses (
     contact_number VARCHAR2(15) NOT NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT chk_warehouse_code CHECK (LENGTH(TRIM(warehouse_code)) > 0),  
-    CONSTRAINT chk_city CHECK (LENGTH(TRIM(city)) > 0),  
-    CONSTRAINT chk_state CHECK (LENGTH(TRIM(state)) > 0),  
-    CONSTRAINT chk_country CHECK (LENGTH(TRIM(country)) > 0),  
-    CONSTRAINT chk_manager_name CHECK (LENGTH(TRIM(manager_name)) > 0),  
     CONSTRAINT chk_contact_number CHECK (REGEXP_LIKE(contact_number, '^[0-9+\- ]+$'))
 );
 
