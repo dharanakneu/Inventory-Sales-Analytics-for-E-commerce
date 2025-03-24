@@ -95,7 +95,9 @@ CREATE TABLE Customers (
     dob DATE,
     gender CHAR(1),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT chk_email_format CHECK (email LIKE '%@%.%'),
+    CONSTRAINT chk_gender_customers CHECK (gender IN ('M', 'F', 'O'))
 );
 
 CREATE TABLE Addresses (
