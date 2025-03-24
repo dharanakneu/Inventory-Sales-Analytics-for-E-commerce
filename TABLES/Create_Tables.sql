@@ -1,7 +1,6 @@
 -- Clear the Oracle database recycle bin
 PURGE RECYCLEBIN;
 
-
 -- Enable output messages from PL/SQL scripts for debugging
 SET SERVEROUTPUT ON
 
