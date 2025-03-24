@@ -4,13 +4,13 @@ The Predictive Inventory & Sales Analytics for E-commerce system empowers busine
 To maximize revenue, the system determines optimal discount strategies by analyzing which discount levels drive the highest sales, ensuring promotions are both effective and profitable. It also helps prevent stockouts and overstocking by flagging products at risk of running out of stock or accumulating excess inventory. By identifying seasonal demand patterns, businesses can anticipate peak sales periods and align inventory accordingly. The system further supports clearance sales planning by tracking low-selling products and supplier lead time management, ensuring timely restocking based on supplier efficiency. Lastly, it improves customer retention by analyzing purchase frequency, enabling businesses to engage frequent shoppers and re-engage less active customers with personalized strategies.
 
 
-# Running the Project
+## Running the Project
 This project implements an Inventory Management and Sales Analytics system using Oracle SQL.
 
-# Running the SQL Locally / On Your Own Server
+## Running the SQL Locally / On Your Own Server
 You can run this project on any Oracle-compatible environment. The scripts are structured to be executed in the following order to ensure proper dependency management and data flow.
 
-# Step-by-Step Execution Order
+## Step-by-Step Execution Order
 1. Create Tables
 Navigate to the TABLES folder and run all scripts to create base tables.
 This defines all primary keys, foreign keys, data types, and constraints.
@@ -27,7 +27,7 @@ These views are used to simplify complex queries and enable reporting.
 Go to the GRANTS folder and run the grants script.
 This grants access permissions to user roles or other schemas for querying views or tables.
 
-# Folder Structure Overview
+## Folder Structure Overview
 TABLES : Contains all DDL scripts to create the relational schema and insert statements to populate initial data.
 
 VIEWS: Holds view creation scripts for analytics/reporting.
