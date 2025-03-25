@@ -44,10 +44,13 @@ Constraints_and_Validation.pdf : Lists all constraints used across the schema.
 
 DFDs (Data Flow Diagrams):
 
-DMDD_CustomerOnboarding.pdf: Explains the customer registration and address flow.
-DMDD_OrderManagment.pdf: Details the order placement, payment, and shipping processes.
-DMDD_OrderReturn.pdf: Captures the return initiation, validation, and refund workflow.
-DMDD_WarehouseInventoryManagement.pdf: Describes the stock inflow, inventory update, and supplier interaction processes.
+a.) DMDD_CustomerOnboarding.pdf: Explains the customer registration and address flow.
+
+b.) DMDD_OrderManagment.pdf: Details the order placement, payment, and shipping processes.
+
+c.) DMDD_OrderReturn.pdf: Captures the return initiation, validation, and refund workflow.
+
+d.) DMDD_WarehouseInventoryManagement.pdf: Describes the stock inflow, inventory update, and supplier interaction processes.
 
 Normalization_Process.pdf : Documents all the normalization process steps the team has taken to prove the model is normalized.
 
