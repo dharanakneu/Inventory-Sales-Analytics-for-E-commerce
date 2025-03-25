@@ -11,33 +11,37 @@ This project implements an Inventory Management and Sales Analytics system using
 You can run this project on any Oracle-compatible environment. The scripts are structured to be executed in the following order to ensure proper dependency management and data flow.
 
 ## Step-by-Step Execution Order
-1. Create Tables
-Navigate to the TABLES folder and run all scripts to create base tables.
+1. Create Tables  
+Navigate to the TABLES folder and run Create_Tables.sql scripts to create base tables.  
 This defines all primary keys, foreign keys, data types, and constraints.
 
-2. Insert Sample Data
-Go to the TABLES folder and run the Sample_Data.sql script.
+2. Insert Sample Data  
+Go to the SAMPLE_DATA folder and run the Sample_Data.sql script.  
 This populates the tables with test records for development and analytics testing.
 
-3. Create Views
-Navigate to the VIEWS folder and execute the scripts to define analytical views.
+3. Create Views  
+Navigate to the VIEWS folder and execute the Views.sql script to define analytical views.
 These views are used to simplify complex queries and enable reporting.
 
-4. Grant Permissions
-Go to the GRANTS folder and run the grants script.
+4. Grant Permissions  
+Go to the GRANTS folder and run the Grants.sql script.  
 This grants access permissions to user roles or other schemas for querying views or tables.
 
 ## Folder Structure Overview
-TABLES : Contains all DDL scripts to create the relational schema and insert statements to populate initial data.
+TABLES : Contains all DDL scripts to create the relational schema.
 
-VIEWS: Holds view creation scripts for analytics/reporting.
+SAMPLE_DATA : Insert statements to populate initial data.
 
-GRANTS: Includes SQL files to assign user access rights.
+VIEWS : Holds view creation scripts for analytics/reporting.
 
-ERD: Entity Relationship Diagrams and visual schema documents.
+GRANTS : Includes SQL files to assign user access rights.
 
-Business Outcomes.pdf: Describes the business goals of the project.
+ERD : Entity Relationship Diagrams and visual schema documents.
 
-Constraints_and_Validation.pdf: Lists all constraints used across the schema.
+Business_Outcomes.pdf : Describes the business goals of the project.
+
+Constraints_and_Validation.pdf : Lists all constraints used across the schema.
+
+Normalization_Process.pdf : Documents all the normalization process steps the team has taken to prove the model is normalized.
 
 
