@@ -30,3 +30,24 @@ BEGIN
     RAISE_APPLICATION_ERROR(-20002, 'Discounts are immutable and cannot be deleted.');
 END;
 /
+
+-- Trigger to prevent negative stock
+CREATE OR REPLACE TRIGGER trg_prevent_negative_stock
+BEFORE INSERT OR UPDATE ON Inventory
+FOR EACH ROW
+BEGIN
+  IF :NEW.stock_level < 0 THEN
+    RAISE_APPLICATION_ERROR(-20004, 'Stock level cannot be negative.');
+  END IF;
+END;
+/
+-- Trigger to prevent negative stock
+CREATE OR REPLACE TRIGGER trg_prevent_negative_stock
+BEFORE INSERT OR UPDATE ON Inventory
+FOR EACH ROW
+BEGIN
+  IF :NEW.stock_level < 0 THEN
+    RAISE_APPLICATION_ERROR(-20004, 'Stock level cannot be negative.');
+  END IF;
+END;
+/
