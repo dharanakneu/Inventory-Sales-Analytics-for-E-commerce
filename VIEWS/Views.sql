@@ -47,7 +47,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY oi.product_id, p.product_name
 ORDER BY total_units_sold DESC;
 
--- 6. Customer Return Trends
+-- 5. Customer Return Trends
 CREATE OR REPLACE VIEW Customer_Return_Trends AS
 SELECT 
     oi.product_id,
@@ -60,7 +60,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY oi.product_id, p.product_name
 ORDER BY total_returns DESC;
 
--- 7. Discount Effectiveness Summary
+-- 6. Discount Effectiveness Summary
 CREATE OR REPLACE VIEW discount_effectiveness_summary AS
 SELECT
     d.discount_id,
@@ -81,7 +81,7 @@ JOIN Products p ON d.product_id = p.product_id
 JOIN Order_Items oi ON oi.discount_id = d.discount_id
 WHERE oi.discounted_unit_price IS NOT NULL
 
--- 8. Supplier Lead Times
+-- 7. Supplier Lead Times
 CREATE OR REPLACE VIEW Supplier_Lead_Times AS
 SELECT 
     s.supplier_id,
@@ -142,7 +142,7 @@ GROUP BY c.customer_id, c.first_name, c.last_name, ret.total_returns
 ORDER BY total_orders DESC;
 
 
--- 11. Sales Payment Summary
+-- 10. Sales Payment Summary
 CREATE OR REPLACE VIEW sales_payment_summary AS
 SELECT
     co.order_id,
