@@ -80,9 +80,6 @@ VALUES (SEQ_CATEGORY_ID.NEXTVAL, 'Grocery', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
 
 
 
-
-
-
 SET DEFINE OFF;
 INSERT INTO Warehouses (warehouse_id, warehouse_code, city, state, country, manager_name, contact_number)
 VALUES (SEQ_WAREHOUSE_ID.NEXTVAL, 'WH-NY-01', 'New York', 'New York', 'USA', 'Alice Johnson', '+1-212-555-1234');
@@ -179,68 +176,91 @@ INSERT INTO Products (product_id, product_name, price, category_id, inventory_id
 VALUES (SEQ_PRODUCT_ID.NEXTVAL, 'Organic Shampoo', 14.25, 80005, 110010);
 
 
-SET DEFINE OFF;
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Alice', 'Johnson', 'alice.johnson@example.com', '9876543210', DATE '1990-05-12', 'F');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Bob', 'Smith', 'bob.smith@example.com', '9123456789', DATE '1985-08-25', 'M');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Carol', 'Martinez', 'carol.m@example.com', '9988776655', DATE '1993-11-10', 'F');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'David', 'Lee', 'david.lee@example.org', '8877665544', DATE '1979-02-14', 'M');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Eve', 'Clark', 'eve.clark@domain.com', '9001122334', DATE '2000-01-01', 'F');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Frank', 'Turner', 'frank.turner@mail.com', '9345678901', DATE '1988-12-20', 'M');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Grace', 'Taylor', 'grace.taylor@domain.org', '9112233445', DATE '1995-03-30', 'F');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Henry', 'White', 'henry.white@domain.net', '9887766554', DATE '1982-07-07', 'M');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Ivy', 'Nguyen', 'ivy.nguyen@example.com', '9776655443', DATE '1999-09-09', 'F');
-
-INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Jordan', 'Kim', 'jordan.kim@example.com', '9665544332', DATE '1991-04-18', 'O');
-
-
-
 
 SET DEFINE OFF;
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Nina', 'Walker', 'nina.walker@samplemail.com', '9810011223', DATE '1990-05-12', 'F');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Liam', 'Anderson', 'liam.anderson@samplemail.com', '9823344556', DATE '1985-08-25', 'M');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Sophie', 'Reed', 'sophie.reed@domain.co', '9834455667', DATE '1993-11-10', 'F');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Ethan', 'Brown', 'ethan.brown@sample.org', '9845566778', DATE '1979-02-14', 'M');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Zara', 'Perry', 'zara.perry@mailhost.com', '9856677889', DATE '2000-01-01', 'F');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Owen', 'Foster', 'owen.foster@mailplace.com', '9867788990', DATE '1988-12-20', 'M');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Isla', 'Morgan', 'isla.morgan@sample.org', '9878899001', DATE '1995-03-30', 'F');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Noah', 'Carter', 'noah.carter@domain.net', '9889900112', DATE '1982-07-07', 'M');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Mila', 'Chen', 'mila.chen@example.com', '9891011223', DATE '1999-09-09', 'F');
+
+INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Riley', 'Singh', 'riley.singh@example.com', '9902122334', DATE '1991-04-18', 'O');
+
+
+
+SET DEFINE OFF;
+
+-- Customer 10001 - 2 addresses
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '123 Main St', 'New York', 'NY', '10001', 'Home', 10001, 'Y', 'N');
 
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
+VALUES (SEQ_ADDRESS_ID.NEXTVAL, '500 Broadway', 'New York', 'NY', '10012', 'Work', 10001, 'N', 'N');
+
+-- Customer 10002 - 1 address
+INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '456 Maple Ave', 'Los Angeles', 'CA', '90001', 'Work', 10002, 'Y', 'N');
 
+-- Customer 10003 - 2 addresses
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '789 Oak Blvd', 'Chicago', 'IL', '60601', 'Home', 10003, 'Y', 'N');
 
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
+VALUES (SEQ_ADDRESS_ID.NEXTVAL, '950 Lake Shore Dr', 'Chicago', 'IL', '60611', 'Other', 10003, 'N', 'N');
+
+-- Customer 10004 - 1 address
+INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '321 Pine Rd', 'Houston', 'TX', '77001', 'Work', 10004, 'Y', 'N');
 
+-- Customer 10005 - 1 address
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '654 Cedar Ln', 'Miami', 'FL', '33101', 'Home', 10005, 'Y', 'N');
 
+-- Customer 10006 - 2 addresses
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '987 Birch St', 'Seattle', 'WA', '98101', 'Other', 10006, 'Y', 'N');
 
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
+VALUES (SEQ_ADDRESS_ID.NEXTVAL, '123 Rainier Ave', 'Seattle', 'WA', '98104', 'Home', 10006, 'N', 'N');
+
+-- Customer 10007 - 1 address
+INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '111 Elm Dr', 'Denver', 'CO', '80201', 'Home', 10007, 'Y', 'N');
 
+-- Customer 10008 - 1 address
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '222 Spruce Ave', 'Boston', 'MA', '02101', 'Work', 10008, 'Y', 'N');
 
+-- Customer 10009 - 2 addresses
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '333 Aspen Ct', 'Phoenix', 'AZ', '85001', 'Home', 10009, 'Y', 'N');
 
+INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
+VALUES (SEQ_ADDRESS_ID.NEXTVAL, '120 Desert Dr', 'Phoenix', 'AZ', '85002', 'Work', 10009, 'N', 'N');
+
+-- Customer 10010 - 1 address
 INSERT INTO Addresses (address_id, address_line, city, state, zip_code, address_type, customer_id, is_default, is_deleted)
 VALUES (SEQ_ADDRESS_ID.NEXTVAL, '444 Walnut St', 'Atlanta', 'GA', '30301', 'Work', 10010, 'Y', 'N');
 
@@ -248,52 +268,85 @@ VALUES (SEQ_ADDRESS_ID.NEXTVAL, '444 Walnut St', 'Atlanta', 'GA', '30301', 'Work
 
 SET DEFINE OFF;
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 89.99, 'Pending', 10001, 20001);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 61.03, 'Pending', 10001, 20001);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 149.49, 'Shipped', 10002, 20002);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 63.6, 'Shipped', 10002, 20002);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 45.00, 'Delivered', 10003, 20003);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 749.87, 'Delivered', 10003, 20003);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 199.99, 'Cancelled', 10004, 20004);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 38.25, 'Cancelled', 10004, 20004);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 72.25, 'Pending', 10005, 20005);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 72.83, 'Pending', 10005, 20005);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 330.00, 'Shipped', 10006, 20006);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 25.98, 'Shipped', 10006, 20006);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 18.50, 'Delivered', 10007, 20007);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 89.95, 'Delivered', 10007, 20007);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 250.10, 'Pending', 10008, 20008);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 44.98, 'Pending', 10008, 20008);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 305.75, 'Delivered', 10009, 20009);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 90.0, 'Delivered', 10009, 20009);
 
 INSERT INTO Customer_Orders (order_id, total_amount, order_status, customer_id, shipping_address_id)
-VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 120.00, 'Shipped', 10010, 20010);
+VALUES (SEQ_CUSTOMER_ORDER_ID.NEXTVAL, 42.75, 'Shipped', 10010, 20010);
+
+
+SET DEFINE OFF;
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'SAVE10', 10.00, DATE '2025-03-01', DATE '2025-07-31', 70001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'SPRING20', 20.00, DATE '2025-04-01', DATE '2025-05-30', 70002, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'FREESHIP', 5.00, DATE '2025-02-01', DATE '2025-08-15', 70003, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'SUMMER15', 15.00, DATE '2025-04-01', DATE '2025-08-30', 70004, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'WELCOME5', 5.00, DATE '2024-01-01', DATE '2030-12-31', 70005, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'WINTER25', 25.00, DATE '2025-12-01', DATE '2025-12-31', 70006, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'HOLIDAY50', 50.00, DATE '2025-03-25', DATE '2025-11-30', 70007, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'BLACKFRI', 40.00, DATE '2025-11-28', DATE '2025-11-29', 70008, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'CYBERMON', 30.00, DATE '2025-04-02', DATE '2025-12-02', 70009, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
+VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'CLEARANCE', 60.00, DATE '2025-01-01', DATE '2025-07-15', 70010, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 
 SET DEFINE OFF;
-INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
-VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 2, 25.99, 70001, 30001);
 
-INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
-VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 1, 79.50, 70002, 30002);
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id, discount_id, discounted_unit_price)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 2, 25.99, 70001, 30001, 90001, 23.39);
 
-INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
-VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 3, 199.99, 70003, 30003);
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id, discount_id, discounted_unit_price)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 1, 79.5, 70002, 30002, 90002, 63.60);
 
-INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
-VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 1, 45.00, 70004, 30004);
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id, discount_id, discounted_unit_price)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 3, 199.99, 70003, 30003, 90003, 189.99);
 
-INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
-VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 4, 15.75, 70005, 30005);
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id, discount_id, discounted_unit_price)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 1, 45.0, 70004, 30004, 90004, 38.25);
+
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id, discount_id, discounted_unit_price)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 4, 15.75, 70005, 30005, 90005, 14.96);
 
 INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
 VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 2, 12.99, 70006, 30006);
@@ -310,105 +363,72 @@ VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 5, 18.00, 70009, 30009);
 INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
 VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 3, 14.25, 70010, 30010);
 
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 1, 14.25, 70010, 30001);
 
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 2, 89.95, 70007, 30003);
 
-SET DEFINE OFF;
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Credit Card', 'Completed', DATE '2025-03-01', 89.99, 30001);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'PayPal', 'Completed', DATE '2025-03-02', 149.49, 30002);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Debit Card', 'Completed', DATE '2025-03-02', 45.00, 30003);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Credit Card', 'Refunded', DATE '2025-03-03', 199.99, 30004);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Cash', 'Completed', DATE '2025-03-03', 72.25, 30005);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Bank Transfer', 'Pending', DATE '2025-03-04', 330.00, 30006);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'PayPal', 'Completed', DATE '2025-03-04', 18.50, 30007);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Other', 'Failed', DATE '2025-03-05', 250.10, 30008);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Debit Card', 'Completed', DATE '2025-03-05', 305.75, 30009);
-
-INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
-VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Credit Card', 'Completed', DATE '2025-03-06', 120.00, 30010);
+INSERT INTO Order_Items (order_item_id, product_quantity, unit_price, product_id, order_id)
+VALUES (SEQ_ORDER_ITEM_ID.NEXTVAL, 1, 12.99, 70006, 30005);
 
 
 
 SET DEFINE OFF;
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 59.99, 'Pending', 'Product defective upon arrival', 1, 50001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 39.50, 'Approved', 'Wrong item shipped', 2, 50002, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Credit Card', 'Completed', DATE '2025-03-01', 66.23, 30001);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 0.00, 'Rejected', 'Return window expired', 1, 50003, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'PayPal', 'Completed', DATE '2025-03-02', 79.50, 30002);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 120.00, 'Completed', 'Damaged in transit', 1, 50004, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Debit Card', 'Completed', DATE '2025-03-02', 779.87, 30003);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 24.99, 'Approved', 'Product doesn’t match description', 1, 50005, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Credit Card', 'Refunded', DATE '2025-03-03', 45.00, 30004);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 14.75, 'Completed', 'Incorrect size sent', 1, 50006, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Cash', 'Completed', DATE '2025-03-03', 75.99, 30005);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 85.00, 'Pending', 'Missing parts', 3, 50007, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Bank Transfer', 'Pending', DATE '2025-03-04', 25.98, 30006);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 0.00, 'Rejected', 'Minor scratches, non-returnable', 1, 50008, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'PayPal', 'Completed', DATE '2025-03-04', 89.95, 30007);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 95.00, 'Approved', 'Late delivery', 2, 50009, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Other', 'Failed', DATE '2025-03-05', 44.98, 30008);
 
-INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
-VALUES (SEQ_RETURN_ID.NEXTVAL, 49.99, 'Completed', 'Changed mind', 1, 50010, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Debit Card', 'Completed', DATE '2025-03-05', 90.00, 30009);
+
+INSERT INTO Payments (payment_id, payment_method, payment_status, payment_date, amount_paid, order_id)
+VALUES (SEQ_PAYMENT_ID.NEXTVAL, 'Credit Card', 'Completed', DATE '2025-03-06', 42.75, 30010);
 
 
 
 SET DEFINE OFF;
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'SAVE10', 10.00, DATE '2024-03-01', DATE '2024-03-31', 70001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'SPRING20', 20.00, DATE '2024-04-01', DATE '2024-04-30', 70002, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+-- Order Item 50001: 1 unit, unit price 25.99 → return for 1 defective unit
+INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
+VALUES (SEQ_RETURN_ID.NEXTVAL, 25.99, 'Pending', 'Product defective upon arrival', 1, 50001, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'FREESHIP', 5.00, DATE '2024-05-01', DATE '2024-05-15', 70003, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+-- Order Item 50002: 1 unit, unit price 39.50 → return for wrong item
+INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
+VALUES (SEQ_RETURN_ID.NEXTVAL, 39.50, 'Approved', 'Wrong item shipped', 1, 50002, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'SUMMER15', 15.00, DATE '2024-06-01', DATE '2024-06-30', 70004, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+-- Order Item 50004: 1 unit, unit price 45.00 → return for damage
+INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
+VALUES (SEQ_RETURN_ID.NEXTVAL, 45.00, 'Completed', 'Damaged in transit', 1, 50004, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'WELCOME5', 5.00, DATE '2024-01-01', DATE '2024-12-31', 70005, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+-- Order Item 50007: 1 unit, unit price 89.95 → partial return due to missing parts
+INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
+VALUES (SEQ_RETURN_ID.NEXTVAL, 89.95, 'Pending', 'Missing parts', 1, 50007, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'WINTER25', 25.00, DATE '2024-12-01', DATE '2024-12-31', 70006, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'HOLIDAY50', 50.00, DATE '2024-11-25', DATE '2024-11-30', 70007, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'BLACKFRI', 40.00, DATE '2024-11-28', DATE '2024-11-29', 70008, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'CYBERMON', 30.00, DATE '2024-12-02', DATE '2024-12-02', 70009, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-INSERT INTO Discounts (discount_id, promo_code, discount_percentage, start_date, end_date, product_id, created_at, updated_at)
-VALUES (SEQ_DISCOUNT_ID.NEXTVAL, 'CLEARANCE', 60.00, DATE '2024-07-01', DATE '2024-07-15', 70010, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
+-- Order Item 50010: 1 unit, unit price 42.75 → return due to changed mind
+INSERT INTO Returns (return_id, return_amount, status, reason, returned_quantity, order_item_id, created_at, updated_at)
+VALUES (SEQ_RETURN_ID.NEXTVAL, 42.75, 'Completed', 'Changed mind', 1, 50010, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 SET DEFINE OFF;
