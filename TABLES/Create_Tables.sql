@@ -43,7 +43,6 @@ CREATE SEQUENCE SEQ_SUPPLIERS_PRODUCTS_ID START WITH 130001 INCREMENT BY 1;
 CREATE SEQUENCE SEQ_WAREHOUSE_ORDERS_ID START WITH 140001 INCREMENT BY 1;
 
 
-
 -- Creating tables
 
 CREATE TABLE Categories (
@@ -150,12 +149,28 @@ CREATE TABLE Payments (
     CONSTRAINT chk_payment_status CHECK (payment_status IN ('Pending', 'Completed', 'Failed', 'Refunded', 'Cancelled'))  
 );
 
+CREATE TABLE Discounts (
+    discount_id INTEGER PRIMARY KEY,  
+    promo_code VARCHAR2(20) NOT NULL UNIQUE, 
+    discount_percentage NUMBER(5,2) NOT NULL,
+    start_date DATE NOT NULL,  
+    end_date DATE NOT NULL, 
+    product_id INTEGER REFERENCES Products(product_id) ON DELETE CASCADE, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
+    CONSTRAINT chk_promo_code_format CHECK (REGEXP_LIKE(promo_code, '^[A-Z0-9]+$')),  
+    CONSTRAINT chk_discount_percentage CHECK (discount_percentage >= 0 AND discount_percentage <= 100), 
+    CONSTRAINT chk_dates CHECK (start_date <= end_date) 
+);
+
 CREATE TABLE Order_Items (
     order_item_id INTEGER PRIMARY KEY,  
     product_quantity INTEGER NOT NULL,
     unit_price NUMBER(10,2) NOT NULL,
     product_id INTEGER NOT NULL REFERENCES Products(product_id) ON DELETE CASCADE,  
-    order_id INTEGER NOT NULL REFERENCES Customer_Orders(order_id) ON DELETE CASCADE,  
+    order_id INTEGER NOT NULL REFERENCES Customer_Orders(order_id) ON DELETE CASCADE,
+    discount_id INTEGER REFERENCES Discounts(discount_id) ON DELETE SET NULL,
+    discounted_unit_price NUMBER(10, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
     CONSTRAINT chk_product_quantity CHECK (product_quantity > 0),  
@@ -174,20 +189,6 @@ CREATE TABLE Returns (
     CONSTRAINT chk_return_status CHECK (status IN ('Pending', 'Approved', 'Rejected', 'Completed')),  
     CONSTRAINT chk_return_amt CHECK (return_amount >= 0),  
     CONSTRAINT chk_return_qty CHECK (returned_quantity > 0)
-);
-
-CREATE TABLE Discounts (
-    discount_id INTEGER PRIMARY KEY,  
-    promo_code VARCHAR2(20) NOT NULL UNIQUE, 
-    discount_percentage NUMBER(5,2) NOT NULL,
-    start_date DATE NOT NULL,  
-    end_date DATE NOT NULL, 
-    product_id INTEGER REFERENCES Products(product_id) ON DELETE CASCADE, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,  
-    CONSTRAINT chk_promo_code_format CHECK (REGEXP_LIKE(promo_code, '^[A-Z0-9]+$')),  
-    CONSTRAINT chk_discount_percentage CHECK (discount_percentage >= 0 AND discount_percentage <= 100), 
-    CONSTRAINT chk_dates CHECK (start_date <= end_date) 
 );
 
 CREATE TABLE Suppliers (
@@ -224,6 +225,17 @@ CREATE TABLE Warehouse_Orders (
     CONSTRAINT fk_supplier_id FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id) ON DELETE CASCADE,
     CONSTRAINT fk_inventory_id FOREIGN KEY (inventory_id) REFERENCES Inventory(inventory_id) ON DELETE CASCADE,
     CONSTRAINT uq_warehouse_supplier_inventory UNIQUE (warehouse_id, supplier_id, inventory_id)
+);
+
+CREATE TABLE Inventory_Threshold_Log (
+    log_id INTEGER PRIMARY KEY,
+    inventory_id INTEGER,
+    product_id INTEGER,
+    stock_level INTEGER,
+    threshold INTEGER,
+    event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (inventory_id) REFERENCES Inventory(inventory_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
 
