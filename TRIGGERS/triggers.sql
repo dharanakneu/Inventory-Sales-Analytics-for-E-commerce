@@ -11,6 +11,7 @@ BEGIN
 END;
 /
 
+
 CREATE OR REPLACE TRIGGER trg_prevent_discount_update
 BEFORE UPDATE ON Discounts
 FOR EACH ROW
