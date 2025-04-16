@@ -42,3 +42,18 @@ BEGIN
 END;
 /
 
+-- This trigger ensures that when a new address is marked as default, all other addresses for the same customer are updated to non-default.
+CREATE OR REPLACE TRIGGER trg_single_default_address
+BEFORE INSERT OR UPDATE ON Addresses
+FOR EACH ROW
+BEGIN
+    IF :NEW.is_default = 'Y' THEN
+        UPDATE Addresses
+        SET is_default = 'N'
+        WHERE customer_id = :NEW.customer_id
+          AND address_id != :NEW.address_id
+          AND is_default = 'Y';
+    END IF;
+END;
+/
+
