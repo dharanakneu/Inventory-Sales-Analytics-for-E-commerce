@@ -81,6 +81,15 @@ JOIN Products p ON d.product_id = p.product_id
 JOIN Order_Items oi ON oi.discount_id = d.discount_id
 WHERE oi.discounted_unit_price IS NOT NULL
 
+GROUP BY
+    d.discount_id,
+    d.promo_code,
+    d.discount_percentage,
+    d.start_date,
+    d.end_date,
+    p.product_id,
+    p.product_name;
+
 -- 7. Supplier Lead Times
 CREATE OR REPLACE VIEW Supplier_Lead_Times AS
 SELECT 
@@ -168,10 +177,6 @@ FROM
 
 COMMIT;
 
-
 -- ======================
 -- End of Views Section
--- =====================
-
-
-
+-- ======================
