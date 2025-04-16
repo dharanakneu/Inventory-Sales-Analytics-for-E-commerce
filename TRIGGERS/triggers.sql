@@ -1,8 +1,10 @@
+-- Trigger: Logs low-stock inventory events into Inventory_Threshold_Log
 CREATE OR REPLACE TRIGGER trg_inventory_threshold_check
 AFTER UPDATE ON Inventory
 FOR EACH ROW
 WHEN (NEW.stock_level < NEW.reorder_threshold)
 BEGIN
+    -- Insert a log record when inventory level drops below threshold
     INSERT INTO Inventory_Threshold_Log (inventory_id, product_id, stock_level, threshold)
     SELECT i.inventory_id, p.product_id, :NEW.stock_level, :NEW.reorder_threshold
     FROM Products p
@@ -11,7 +13,7 @@ BEGIN
 END;
 /
 
-
+-- Trigger: Prevent updates to Discounts table to enforce immutability
 CREATE OR REPLACE TRIGGER trg_prevent_discount_update
 BEFORE UPDATE ON Discounts
 FOR EACH ROW
@@ -20,6 +22,7 @@ BEGIN
 END;
 /
 
+-- Trigger: Prevent deletion of Discounts to preserve history and reporting accuracy
 CREATE OR REPLACE TRIGGER trg_prevent_discount_delete
 BEFORE DELETE ON Discounts
 FOR EACH ROW
