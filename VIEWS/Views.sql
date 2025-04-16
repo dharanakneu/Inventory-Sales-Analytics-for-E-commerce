@@ -2,7 +2,7 @@
 -- Section 2: Reporting Views
 -- ======================
 
--- 1. Current Inventory Status 
+-- 1. Current Inventory Status
 CREATE OR REPLACE VIEW Current_Inventory_Status AS
 SELECT 
     i.inventory_id,
@@ -47,7 +47,7 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY oi.product_id, p.product_name
 ORDER BY total_units_sold DESC;
 
--- 5. Customer Return Trends 
+-- 6. Customer Return Trends
 CREATE OR REPLACE VIEW Customer_Return_Trends AS
 SELECT 
     oi.product_id,
@@ -60,22 +60,28 @@ JOIN Products p ON oi.product_id = p.product_id
 GROUP BY oi.product_id, p.product_name
 ORDER BY total_returns DESC;
 
--- 6. Discount Effectiveness 
-CREATE OR REPLACE VIEW Discount_Effectiveness AS
-SELECT 
-    d.product_id,
-    p.product_name,
+-- 7. Discount Effectiveness Summary
+CREATE OR REPLACE VIEW discount_effectiveness_summary AS
+SELECT
+    d.discount_id,
+    d.promo_code,
     d.discount_percentage,
-    COUNT(DISTINCT co.order_id) AS orders_with_discount,
-    SUM(co.total_amount) AS total_discount_sales
+    d.start_date,
+    d.end_date,
+    p.product_id,
+    p.product_name,
+
+    COUNT(DISTINCT oi.order_id) AS total_orders_with_discount,
+    SUM(oi.product_quantity) AS total_units_sold_with_discount,
+    ROUND(SUM(oi.discounted_unit_price * oi.product_quantity), 2) AS total_revenue_with_discount,
+    ROUND(AVG(oi.discounted_unit_price), 2) AS average_discounted_price
+
 FROM Discounts d
 JOIN Products p ON d.product_id = p.product_id
-JOIN Order_Items oi ON oi.product_id = d.product_id
-JOIN Customer_Orders co ON co.order_id = oi.order_id
-GROUP BY d.product_id, p.product_name, d.discount_percentage
-ORDER BY total_discount_sales DESC;
+JOIN Order_Items oi ON oi.discount_id = d.discount_id
+WHERE oi.discounted_unit_price IS NOT NULL
 
--- 7. Supplier Lead Times 
+-- 8. Supplier Lead Times
 CREATE OR REPLACE VIEW Supplier_Lead_Times AS
 SELECT 
     s.supplier_id,
@@ -108,11 +114,57 @@ SELECT
     ROUND(AVG(co.total_amount), 2) AS avg_order_value,
     MIN(co.order_date) AS first_order_date,
     MAX(co.order_date) AS last_order_date,
-    ROUND(SYSDATE - MAX(co.order_date)) AS days_since_last_order
+    ROUND(SYSDATE - MAX(co.order_date)) AS days_since_last_order,
+    
+    NVL(ret.total_returns, 0) AS total_returns,
+    ROUND(NVL(ret.total_returns / NULLIF(COUNT(co.order_id), 0), 0), 2) AS return_ratio,
+
+    CASE
+        WHEN ROUND(SYSDATE - MAX(co.order_date)) > 90 OR NVL(ret.total_returns, 0) > 3 THEN 'High'
+        WHEN ROUND(SYSDATE - MAX(co.order_date)) > 60 THEN 'Medium'
+        ELSE 'Low'
+    END AS churn_risk
+
 FROM Customers c
 JOIN Customer_Orders co ON c.customer_id = co.customer_id
-GROUP BY c.customer_id, c.first_name, c.last_name
+LEFT JOIN (
+    SELECT
+        co.customer_id,
+        COUNT(r.return_id) AS total_returns
+    FROM
+        Returns r
+        JOIN Order_Items oi ON r.order_item_id = oi.order_item_id
+        JOIN Customer_Orders co ON oi.order_id = co.order_id
+    GROUP BY co.customer_id
+) ret ON ret.customer_id = c.customer_id
+
+GROUP BY c.customer_id, c.first_name, c.last_name, ret.total_returns
 ORDER BY total_orders DESC;
+
+
+-- 11. Sales Payment Summary
+CREATE OR REPLACE VIEW sales_payment_summary AS
+SELECT
+    co.order_id,
+    co.order_date,
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    c.email AS customer_email,
+    p.product_id,
+    p.product_name,
+    oi.product_quantity,
+    oi.unit_price,
+    (oi.product_quantity * oi.unit_price) AS total_order_amount,
+    pay.amount_paid,
+    pay.payment_status,
+    pay.payment_method,
+    pay.payment_date
+FROM
+    Customer_Orders co
+    JOIN Customers c ON co.customer_id = c.customer_id
+    JOIN Order_Items oi ON oi.order_id = co.order_id
+    JOIN Products p ON oi.product_id = p.product_id
+    LEFT JOIN Payments pay ON pay.order_id = co.order_id;
 
 COMMIT;
 
