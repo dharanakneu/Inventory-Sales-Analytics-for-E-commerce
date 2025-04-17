@@ -1,3 +1,5 @@
+
+
 CREATE OR REPLACE PROCEDURE Place_Customer_Order (
     p_customer_id         IN Customer_Orders.customer_id%TYPE,
     p_shipping_address_id IN Customer_Orders.shipping_address_id%TYPE,
@@ -46,9 +48,14 @@ BEGIN
             v_product_id := TO_NUMBER(REGEXP_SUBSTR(p_order_items(i), '[^|]+', 1, 1));
             v_quantity   := TO_NUMBER(REGEXP_SUBSTR(p_order_items(i), '[^|]+', 1, 2));
 
-            -- Get product price and inventory
-            SELECT price, inventory_id INTO v_unit_price, v_inventory_id
-            FROM Products WHERE product_id = v_product_id;
+            -- Validate product and get price, inventory
+            BEGIN
+                SELECT price, inventory_id INTO v_unit_price, v_inventory_id
+                FROM Products WHERE product_id = v_product_id;
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    RAISE_APPLICATION_ERROR(-20011, 'Invalid product ID: ' || v_product_id);
+            END;
 
             -- Lock inventory row and check stock
             SELECT stock_level INTO v_stock
@@ -108,6 +115,7 @@ END;
 /
 
 
+
 CREATE OR REPLACE PROCEDURE Handle_Return (
     p_order_item_id IN Returns.order_item_id%TYPE,
     p_quantity      IN Returns.returned_quantity%TYPE,
@@ -119,9 +127,9 @@ IS
     v_order_qty     NUMBER;
     v_returned_qty  NUMBER;
 BEGIN
-    -- Validate order item and fetch price, product, and quantity
+    -- Try to get discounted price, fallback to unit_price
     BEGIN
-        SELECT discounted_unit_price, product_id, product_quantity 
+        SELECT NVL(discounted_unit_price, unit_price), product_id, product_quantity 
         INTO v_price, v_product_id, v_order_qty
         FROM Order_Items 
         WHERE order_item_id = p_order_item_id;
@@ -130,7 +138,7 @@ BEGIN
             RAISE_APPLICATION_ERROR(-20012, 'Invalid order_item_id.');
     END;
 
-    -- Check if the return quantity exceeds original ordered quantity
+    -- Check return limits
     SELECT NVL(SUM(returned_quantity), 0)
     INTO v_returned_qty
     FROM Returns
@@ -140,7 +148,7 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20006, 'Over-return detected.');
     END IF;
 
-    -- Insert into Returns table
+    -- Insert return
     INSERT INTO Returns (
         return_id, return_amount, status, reason,
         returned_quantity, order_item_id, created_at, updated_at
@@ -151,7 +159,6 @@ BEGIN
     );
 END;
 /
-
 
 
 CREATE OR REPLACE FUNCTION Is_Valid_Status_Transition (
@@ -174,7 +181,4 @@ END;
 GRANT EXECUTE ON Place_Customer_Order TO ECOMM_SALES_USER;
 GRANT EXECUTE ON Handle_Return TO ECOMM_SALES_USER;
 GRANT EXECUTE ON Is_Valid_Status_Transition TO ECOMM_SALES_USER;
-GRANT EXECUTE ON Customer_Orders TO ECOMM_SALES_USER; 
-GRANT EXECUTE ON Payments TO ECOMM_SALES_USER;  
-GRANT EXECUTE ON Returns TO ECOMM_SALES_USER;  
-GRANT EXECUTE ON trg_restock_inventory_on_approved_return TO ECOMM_SALES_USER; 
+
