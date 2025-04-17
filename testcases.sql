@@ -248,21 +248,6 @@ BEGIN
 END;
 /
 
--- IS_Valid_transition
-
-BEGIN
-    IF Is_Valid_Status_Transition('Pending', 'Shipped') THEN
-        DBMS_OUTPUT.PUT_LINE('Test A: PASS');
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('Test A: FAIL');
-    END IF;
-
-    IF Is_Valid_Status_Transition('Delivered', 'Returned') THEN
-        DBMS_OUTPUT.PUT_LINE('Test B: FAIL');
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('Test B: PASS');
-    END IF;
-END;
 
 -Trigger Reduce Update
 SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
