@@ -97,7 +97,7 @@ BEGIN
     p_last_name    => 'Brown',
     p_email        => 'brown@example.com',
     p_phone        => '555-6789',
-    p_dob          => TO_DATE('2025-01-01', 'YYYY-MM-DD'),  -- DOB in the future
+    p_dob          => TO_DATE('2025-12-01', 'YYYY-MM-DD'),  -- DOB in the future
     p_gender       => 'M',
     p_address_line => '789 Pine St',
     p_city         => 'Brookline',
