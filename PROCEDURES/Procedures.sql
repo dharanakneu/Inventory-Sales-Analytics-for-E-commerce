@@ -147,7 +147,7 @@ BEGIN
       order_date, created_at, updated_at
     )
     VALUES (
-      WAREHOUSE_ORDER_SEQ.NEXTVAL,
+      SEQ_WAREHOUSE_ORDERS_ID.NEXTVAL,
       p_inventory_id,
       v_supplier_id,
       120001,
