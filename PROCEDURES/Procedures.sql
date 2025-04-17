@@ -129,34 +129,134 @@ END Onboard_Customer;
 
 
 -- Procedure: Place Restock Order
-CREATE OR REPLACE PROCEDURE place_restock_order(p_inventory_id NUMBER) AS
-  v_stock_level NUMBER;
-  v_threshold NUMBER;
-  v_needed_qty NUMBER;
-  v_supplier_id NUMBER := 1;
-BEGIN
-  SELECT stock_level, reorder_threshold
-  INTO v_stock_level, v_threshold
-  FROM Inventory
-  WHERE inventory_id = p_inventory_id;
+CREATE OR REPLACE PROCEDURE place_restock_order (
+    p_product_id      IN Products.product_id%TYPE,
+    p_supplier_email  IN Suppliers.email%TYPE,
+    p_warehouse_code  IN Warehouses.warehouse_code%TYPE
+)
+AS
+    -- Custom exceptions
+    ex_invalid_input          EXCEPTION;
+    ex_product_not_found      EXCEPTION;
+    ex_inventory_not_found    EXCEPTION;
+    ex_supplier_not_found     EXCEPTION;
+    ex_warehouse_not_found    EXCEPTION;
+    ex_no_restock_needed      EXCEPTION;
 
-  IF v_stock_level < v_threshold THEN
+    PRAGMA EXCEPTION_INIT(ex_invalid_input, -20001);
+    PRAGMA EXCEPTION_INIT(ex_product_not_found, -20002);
+    PRAGMA EXCEPTION_INIT(ex_inventory_not_found, -20003);
+    PRAGMA EXCEPTION_INIT(ex_supplier_not_found, -20004);
+    PRAGMA EXCEPTION_INIT(ex_warehouse_not_found, -20005);
+    PRAGMA EXCEPTION_INIT(ex_no_restock_needed, -20006);
+
+    -- Variables to hold retrieved data
+    v_inventory_id    Inventory.inventory_id%TYPE;
+    v_stock_level     Inventory.stock_level%TYPE;
+    v_threshold       Inventory.reorder_threshold%TYPE;
+    v_needed_qty      NUMBER;
+    v_supplier_id     Suppliers.supplier_id%TYPE;
+    v_warehouse_id    Warehouses.warehouse_id%TYPE;
+BEGIN
+    -- Input validations
+    IF p_product_id IS NULL OR p_supplier_email IS NULL OR p_warehouse_code IS NULL THEN
+        RAISE ex_invalid_input;
+    END IF;
+
+    -- Retrieve inventory_id from Products
+    BEGIN
+        SELECT inventory_id
+        INTO v_inventory_id
+        FROM Products
+        WHERE product_id = p_product_id;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE ex_product_not_found;
+    END;
+
+    -- Retrieve stock_level and reorder_threshold from Inventory
+    BEGIN
+        SELECT stock_level, reorder_threshold
+        INTO v_stock_level, v_threshold
+        FROM Inventory
+        WHERE inventory_id = v_inventory_id;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE ex_inventory_not_found;
+    END;
+
+    -- Retrieve supplier_id from Suppliers
+    BEGIN
+        SELECT supplier_id
+        INTO v_supplier_id
+        FROM Suppliers
+        WHERE email = p_supplier_email;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE ex_supplier_not_found;
+    END;
+
+    -- Retrieve warehouse_id from Warehouses
+    BEGIN
+        SELECT warehouse_id
+        INTO v_warehouse_id
+        FROM Warehouses
+        WHERE warehouse_code = p_warehouse_code;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE ex_warehouse_not_found;
+    END;
+
+    -- Check if restock is needed
+    IF v_stock_level >= v_threshold THEN
+        RAISE ex_no_restock_needed;
+    END IF;
+
+    -- Calculate needed quantity
     v_needed_qty := v_threshold - v_stock_level;
+
+    -- Insert restock order
     INSERT INTO Warehouse_Orders (
-      order_id, inventory_id, supplier_id, warehouse_id, total_quantity,
-      order_date, created_at, updated_at
+        order_id,
+        inventory_id,
+        supplier_id,
+        warehouse_id,
+        total_quantity,
+        order_date,
+        created_at,
+        updated_at
     )
     VALUES (
-      SEQ_WAREHOUSE_ORDERS_ID.NEXTVAL,
-      p_inventory_id,
-      v_supplier_id,
-      120001,
-      v_needed_qty,
-      SYSDATE, SYSTIMESTAMP, SYSTIMESTAMP
+        SEQ_WAREHOUSE_ORDERS_ID.NEXTVAL,
+        v_inventory_id,
+        v_supplier_id,
+        v_warehouse_id,
+        v_needed_qty,
+        SYSDATE,
+        SYSTIMESTAMP,
+        SYSTIMESTAMP
     );
-  END IF;
-END;
+
+EXCEPTION
+    WHEN ex_invalid_input THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Invalid input: All parameters are required.');
+    WHEN ex_product_not_found THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Product not found for the given product ID.');
+    WHEN ex_inventory_not_found THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Inventory not found for the given product.');
+    WHEN ex_supplier_not_found THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Supplier not found for the given email.');
+    WHEN ex_warehouse_not_found THEN
+        RAISE_APPLICATION_ERROR(-20005, 'Warehouse not found for the given code.');
+    WHEN ex_no_restock_needed THEN
+        RAISE_APPLICATION_ERROR(-20006, 'Restock not needed: Stock level meets or exceeds threshold.');
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20099, 'An unexpected error occurred: ' || SQLERRM);
+END place_restock_order;
 /
+
+
+
 
 -- Procedure: Receive Shipment
 CREATE OR REPLACE PROCEDURE receive_shipment(
