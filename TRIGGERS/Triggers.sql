@@ -1,17 +1,38 @@
 -- Trigger: Logs low-stock inventory events into Inventory_Threshold_Log
 CREATE OR REPLACE TRIGGER trg_inventory_threshold_check
-AFTER UPDATE ON Inventory
-FOR EACH ROW
-WHEN (NEW.stock_level < NEW.reorder_threshold)
-BEGIN
-    -- Insert a log record when inventory level drops below threshold
-    INSERT INTO Inventory_Threshold_Log (inventory_id, product_id, stock_level, threshold)
-    SELECT i.inventory_id, p.product_id, :NEW.stock_level, :NEW.reorder_threshold
-    FROM Products p
-    JOIN Inventory i ON p.inventory_id = i.inventory_id
-    WHERE i.inventory_id = :NEW.inventory_id;
-END;
+FOR UPDATE ON Inventory
+COMPOUND TRIGGER
+    TYPE inventory_id_list IS TABLE OF Inventory.inventory_id%TYPE INDEX BY PLS_INTEGER;
+    v_inventory_ids inventory_id_list;
+    v_index PLS_INTEGER := 0;
+    
+    BEFORE STATEMENT IS
+    BEGIN
+        v_inventory_ids := inventory_id_list();
+        v_index := 0;
+    END BEFORE STATEMENT;
+    
+    AFTER EACH ROW IS
+    BEGIN
+        IF :NEW.stock_level < :NEW.reorder_threshold THEN
+            v_index := v_index + 1;
+            v_inventory_ids(v_index) := :NEW.inventory_id;
+        END IF;
+    END AFTER EACH ROW;
+    
+    AFTER STATEMENT IS
+    BEGIN
+        FOR i IN 1 .. v_index LOOP
+            INSERT INTO Inventory_Threshold_Log (log_id, inventory_id, product_id, stock_level, threshold)
+            SELECT SEQ_INVENTORY_THRESHOLD_LOG_ID.NEXTVAL, i.inventory_id, p.product_id, i.stock_level, i.reorder_threshold
+            FROM Inventory i
+            JOIN Products p ON p.inventory_id = i.inventory_id
+            WHERE i.inventory_id = v_inventory_ids(i);
+        END LOOP;
+    END AFTER STATEMENT;
+END trg_inventory_threshold_check;
 /
+
 
 -- Trigger: Prevent updates to Discounts table to enforce immutability
 CREATE OR REPLACE TRIGGER trg_prevent_discount_update
