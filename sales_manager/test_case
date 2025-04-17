@@ -104,3 +104,38 @@ BEGIN
     END IF;
 END;
 
+-Trigger Reduce Update
+SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
+
+INSERT INTO Order_Items (
+    order_item_id, product_quantity, unit_price, product_id, order_id
+) VALUES (
+    SEQ_ORDER_ITEM_ID.NEXTVAL, 3, 25.99, 70001, 30001
+);
+
+SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
+
+--Trigger Restock Inventory on Return 
+SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
+
+
+UPDATE Returns
+SET status = 'Approved'
+WHERE return_id = 60001;
+
+SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
+
+--Trigger Order Status Transition
+--success
+UPDATE Customer_Orders
+SET order_status = 'Shipped'
+WHERE order_id = 30001;
+
+--fail
+UPDATE Customer_Orders
+SET order_status = 'Pending'
+WHERE order_id = 30001;
+
+
+
+
