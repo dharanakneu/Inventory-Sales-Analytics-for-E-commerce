@@ -378,7 +378,7 @@ END;
 /
 
 
--Trigger Reduce Update
+--Trigger Reduce Update
 SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
 
 INSERT INTO Order_Items (
@@ -403,7 +403,7 @@ SELECT stock_level FROM Inventory WHERE inventory_id = 110001;
 --success
 UPDATE Customer_Orders
 SET order_status = 'Shipped'
-WHERE order_id = 30001;
+WHERE order_id = 30005;
 
 --fail
 UPDATE Customer_Orders
