@@ -23,7 +23,13 @@ This populates the tables with test records for development and analytics testin
 Navigate to the VIEWS folder and execute the Views.sql script to define analytical views.
 These views are used to simplify complex queries and enable reporting.
 
-4. Grant Permissions  
+4. Create Triggers  
+Navigate to the TRIGGERS folder and execute the Triggers.sql script.
+
+5. Create Procedures  
+Navigate to the PROCEDURES folder and execute the Procedures.sql script.
+
+6. Grant Permissions  
 Go to the GRANTS folder and run the Grants.sql script.  
 This grants access permissions to user roles or other schemas for querying views or tables.
 
