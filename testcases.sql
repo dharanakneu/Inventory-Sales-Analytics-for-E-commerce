@@ -132,27 +132,124 @@ EXCEPTION
 END;
 
 
--- Insert warehouse required by FK
-INSERT INTO Warehouses (
-  warehouse_id, warehouse_code, city, state, country,
-  manager_name, contact_number, created_at, updated_at
-) VALUES (
-  120001, 'WH-NY-01', 'New York', 'New York', 'USA',
-  'Alice Johnson', '+1-212-555-1234', SYSTIMESTAMP, SYSTIMESTAMP
-);
 
--- Insert test inventory
-INSERT INTO Inventory (
-  inventory_id, stock_level, reorder_threshold, warehouse_id, created_at, updated_at
-) VALUES (
-  100, 5, 15, 120001, SYSTIMESTAMP, SYSTIMESTAMP
-);
 
--- Run restock order
-EXEC place_restock_order(100);
 
--- Simulate shipment
-EXEC receive_shipment(100, 20);
+-- Disable the trigger temporarily
+ALTER TRIGGER ADMIN.TRG_INVENTORY_THRESHOLD_CHECK DISABLE;
+
+UPDATE Inventory
+SET stock_level = reorder_threshold - 10
+WHERE inventory_id = (SELECT inventory_id FROM Products WHERE product_id = 70001);
+
+DECLARE
+  v_order_id  NUMBER;
+BEGIN
+  -- Valid input where restock is needed
+  PLACE_RESTOCK_ORDER(
+    p_product_id      => 70001,    -- Existing product_id
+    p_supplier_email  => 'sales@techsource.com',  -- Existing supplier email
+    p_warehouse_code  => 'WH-BC-07' -- Existing warehouse code
+  );
+  DBMS_OUTPUT.PUT_LINE('Test Case 1 Passed: Restock order placed successfully.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 1 Failed: ' || SQLERRM);
+END;
+
+ALTER TRIGGER ADMIN.TRG_INVENTORY_THRESHOLD_CHECK ENABLE;
+
+
+
+DECLARE
+  v_order_id  NUMBER;
+BEGIN
+  -- Valid input where no restock is needed
+  PLACE_RESTOCK_ORDER(
+    p_product_id      => 70002,    -- Existing product_id with stock level >= threshold
+    p_supplier_email  => 'sales@techsource.com',  -- Existing supplier email
+    p_warehouse_code  => 'WH-TX-04' -- Existing warehouse code
+  );
+  DBMS_OUTPUT.PUT_LINE('Test Case 2 Failed: Restock should not have been placed.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 2 Passed: ' || SQLERRM);  -- Expected failure due to no restock needed
+END;
+
+
+DECLARE
+  v_order_id  NUMBER;
+BEGIN
+  -- Invalid input: Null product_id
+  PLACE_RESTOCK_ORDER(
+    p_product_id      => NULL,    -- Invalid product_id
+    p_supplier_email  => 'supplier@example.com',  -- Existing supplier email
+    p_warehouse_code  => 'WH001' -- Existing warehouse code
+  );
+  DBMS_OUTPUT.PUT_LINE('Test Case 3 Failed: Procedure should fail due to null product_id.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 3 Passed: ' || SQLERRM);  -- Expected failure due to null product_id
+END;
+
+
+
+DECLARE
+  v_order_id  NUMBER;
+BEGIN
+  -- Invalid input: Non-existent product_id
+  PLACE_RESTOCK_ORDER(
+    p_product_id      => 9999,   -- Non-existent product_id
+    p_supplier_email  => 'supplier@example.com',  -- Existing supplier email
+    p_warehouse_code  => 'WH001' -- Existing warehouse code
+  );
+  DBMS_OUTPUT.PUT_LINE('Test Case 4 Failed: Procedure should fail due to product not found.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 4 Passed: ' || SQLERRM);  -- Expected failure due to product not found
+END;
+
+
+DECLARE
+  v_order_id  NUMBER;
+BEGIN
+  -- Invalid input: Non-existent supplier email
+  PLACE_RESTOCK_ORDER(
+    p_product_id      => 70001,    -- Valid product_id
+    p_supplier_email  => 'nonexistent_supplier@example.com',  -- Non-existent supplier email
+    p_warehouse_code  => 'WH001' -- Existing warehouse code
+  );
+  DBMS_OUTPUT.PUT_LINE('Test Case 7 Failed: Procedure should fail due to supplier not found.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 7 Passed: ' || SQLERRM);  -- Expected failure due to supplier not found
+END;
+
+
+
+
+DECLARE
+  v_order_id  NUMBER;
+BEGIN
+  -- Invalid input: Non-existent warehouse code
+  PLACE_RESTOCK_ORDER(
+    p_product_id      => 70001,    -- Valid product_id
+    p_supplier_email  => 'sales@techsource.com',  -- Existing supplier email
+    p_warehouse_code  => 'WH999' -- Non-existent warehouse code
+  );
+  DBMS_OUTPUT.PUT_LINE('Test Case 8 Failed: Procedure should fail due to warehouse not found.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 8 Passed: ' || SQLERRM);  -- Expected failure due to warehouse not found
+END;
+
+
+
+
+
+
+
+
 
 -- Attempt negative stock (should fail)
 UPDATE Inventory SET stock_level = -10 WHERE inventory_id = 100;
