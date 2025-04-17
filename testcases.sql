@@ -244,7 +244,6 @@ END;
 
 
 
-
 DECLARE
   v_product_id Products.product_id%TYPE := 70003; -- Replace with a valid product_id
   v_quantity   NUMBER := 50;
