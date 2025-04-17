@@ -259,22 +259,64 @@ END place_restock_order;
 
 
 -- Procedure: Receive Shipment
-CREATE OR REPLACE PROCEDURE receive_shipment(
-  p_inventory_id NUMBER,
-  p_quantity NUMBER
-) AS
-BEGIN
-  UPDATE Inventory
-  SET stock_level = stock_level + p_quantity,
-      last_restock_date = SYSDATE,
-      updated_at = SYSTIMESTAMP
-  WHERE inventory_id = p_inventory_id;
+CREATE OR REPLACE PROCEDURE receive_shipment (
+    p_product_id IN Products.product_id%TYPE,
+    p_quantity   IN NUMBER
+)
+AS
+    -- Custom exceptions
+    ex_invalid_input       EXCEPTION;
+    ex_product_not_found   EXCEPTION;
+    ex_inventory_not_found EXCEPTION;
 
-  IF SQL%ROWCOUNT = 0 THEN
-    RAISE_APPLICATION_ERROR(-20003, 'Inventory ID not found for shipment.');
-  END IF;
-END;
+    PRAGMA EXCEPTION_INIT(ex_invalid_input, -20001);
+    PRAGMA EXCEPTION_INIT(ex_product_not_found, -20002);
+    PRAGMA EXCEPTION_INIT(ex_inventory_not_found, -20003);
+
+    -- Variables to hold retrieved data
+    v_inventory_id Inventory.inventory_id%TYPE;
+BEGIN
+    -- Input validations
+    IF p_product_id IS NULL OR p_quantity IS NULL OR p_quantity <= 0 THEN
+        RAISE ex_invalid_input;
+    END IF;
+
+    -- Retrieve inventory_id from Products
+    BEGIN
+        SELECT inventory_id
+        INTO v_inventory_id
+        FROM Products
+        WHERE product_id = p_product_id;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE ex_product_not_found;
+    END;
+
+    -- Update stock_level in Inventory
+    BEGIN
+        UPDATE Inventory
+        SET stock_level = stock_level + p_quantity,
+            last_restock_date = SYSDATE,
+            updated_at = SYSTIMESTAMP
+        WHERE inventory_id = v_inventory_id;
+
+        IF SQL%ROWCOUNT = 0 THEN
+            RAISE ex_inventory_not_found;
+        END IF;
+    END;
+
+EXCEPTION
+    WHEN ex_invalid_input THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Invalid input: Product ID and quantity must be provided, and quantity must be greater than zero.');
+    WHEN ex_product_not_found THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Product not found for the given Product ID.');
+    WHEN ex_inventory_not_found THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Inventory record not found for the given Product.');
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20099, 'An unexpected error occurred: ' || SQLERRM);
+END receive_shipment;
 /
+
 
 
 CREATE OR REPLACE PROCEDURE Place_Customer_Order (

@@ -133,8 +133,6 @@ END;
 
 
 
-
-
 -- Disable the trigger temporarily
 ALTER TRIGGER ADMIN.TRG_INVENTORY_THRESHOLD_CHECK DISABLE;
 
@@ -247,7 +245,42 @@ END;
 
 
 
+DECLARE
+  v_product_id Products.product_id%TYPE := 70003; -- Replace with a valid product_id
+  v_quantity   NUMBER := 50;
+BEGIN
+  receive_shipment(p_product_id => v_product_id, p_quantity => v_quantity);
+  DBMS_OUTPUT.PUT_LINE('Test Case 1 Passed: Shipment received successfully.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 1 Failed: ' || SQLERRM);
+END;
+/
 
+
+DECLARE
+  v_product_id Products.product_id%TYPE := NULL;
+  v_quantity   NUMBER := 50;
+BEGIN
+  receive_shipment(p_product_id => v_product_id, p_quantity => v_quantity);
+  DBMS_OUTPUT.PUT_LINE('Test Case 2 Failed: Procedure should have raised an error for null product_id.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 2 Passed: ' || SQLERRM);
+END;
+/
+
+DECLARE
+  v_product_id Products.product_id%TYPE := 999999; -- Replace with a non-existent product_id
+  v_quantity   NUMBER := 50;
+BEGIN
+  receive_shipment(p_product_id => v_product_id, p_quantity => v_quantity);
+  DBMS_OUTPUT.PUT_LINE('Test Case 6 Failed: Procedure should have raised an error for non-existent product_id.');
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Test Case 6 Passed: ' || SQLERRM);
+END;
+/
 
 
 
