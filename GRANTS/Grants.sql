@@ -113,6 +113,10 @@ GRANT SELECT ON Customer_Purchase_Frequency TO ECOMM_SALES_MANAGER;
 GRANT SELECT ON sales_payment_summary TO ECOMM_SALES_MANAGER;
 GRANT SELECT ON Customer_Return_Trends TO ECOMM_SALES_MANAGER;
 
+-- Grant EXECUTE privileges on your stored procedures
+GRANT EXECUTE ON Onboard_Customer TO ECOMM_ADMIN;
+GRANT EXECUTE ON place_restock_order TO ECOMM_INVENTORY_MANAGER;
+GRANT EXECUTE ON receive_shipment TO ECOMM_INVENTORY_MANAGER;
 
 
 -- Creating Users and Assigning Roles
