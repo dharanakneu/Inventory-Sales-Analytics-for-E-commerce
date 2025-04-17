@@ -118,6 +118,10 @@ GRANT EXECUTE ON Onboard_Customer TO ECOMM_ADMIN;
 GRANT EXECUTE ON place_restock_order TO ECOMM_INVENTORY_MANAGER;
 GRANT EXECUTE ON receive_shipment TO ECOMM_INVENTORY_MANAGER;
 
+GRANT EXECUTE ON Place_Customer_Order TO ECOMM_SALES_USER;
+GRANT EXECUTE ON Handle_Return TO ECOMM_SALES_USER;
+GRANT EXECUTE ON Is_Valid_Status_Transition TO ECOMM_SALES_USER;
+
 
 -- Creating Users and Assigning Roles
 CREATE USER ecomm_admin_user IDENTIFIED BY InvSalAdmin123;
