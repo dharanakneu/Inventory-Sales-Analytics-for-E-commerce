@@ -1,0 +1,91 @@
+--Valid Order Placement
+BEGIN
+    Place_Customer_Order(
+        p_customer_id         => 10001,
+        p_shipping_address_id => 20001,
+        p_order_items         => SYS.ODCIVARCHAR2LIST('70001|1', '70002|2'),
+        p_order_date          => SYSDATE,
+        p_payment_method      => 'Credit Card'
+    );
+END;
+/
+
+--Valid Order Status Update
+UPDATE Customer_Orders
+SET order_status = 'Shipped'
+WHERE order_id = 30001; -- Make sure this order exists and is 'Pending'
+/
+
+
+--Valid Return 
+BEGIN
+    Handle_Return(
+        p_order_item_id => 50011,
+        p_quantity      => 1,
+        p_reason        => 'Item partially defective'
+    );
+END;
+/
+
+
+--Failed Test Case
+
+--Customer ID does not exist
+BEGIN
+    Place_Customer_Order(
+        p_customer_id         => 99999,  -- Invalid
+        p_shipping_address_id => 20001,
+        p_order_items         => SYS.ODCIVARCHAR2LIST('70001|1'),
+        p_order_date          => SYSDATE,
+        p_payment_method      => 'UPI'
+    );
+END;
+/
+
+--Insufficient Stock
+BEGIN
+    Place_Customer_Order(
+        p_customer_id         => 10001,
+        p_shipping_address_id => 20001,
+        p_order_items         => SYS.ODCIVARCHAR2LIST('70001|9999'),  -- Exceeds available stock
+        p_order_date          => SYSDATE,
+        p_payment_method      => 'Credit Card'
+    );
+END;
+/
+
+-- Invalid Order item id 
+
+BEGIN
+    Handle_Return(
+        p_order_item_id => 999999,  -- Non-existent
+        p_quantity      => 1,
+        p_reason        => 'Invalid'
+    );
+END;
+/
+
+--Over Retrun Dectection
+BEGIN
+    Handle_Return(
+        p_order_item_id => 50001,  -- Already partially returned or only ordered 1
+        p_quantity      => 5,      -- Exceeds allowed
+        p_reason        => 'Testing Over-return'
+    );
+END;
+/
+
+
+-- Invalid Order ID
+BEGIN
+    Place_Customer_Order(
+        p_customer_id         => 10001,
+        p_shipping_address_id => 20001,
+        p_order_items         => SYS.ODCIVARCHAR2LIST('99999|1'),  -- Non-existent product
+        p_order_date          => SYSDATE,
+        p_payment_method      => 'Credit Card'
+    );
+END;
+/
+
+
