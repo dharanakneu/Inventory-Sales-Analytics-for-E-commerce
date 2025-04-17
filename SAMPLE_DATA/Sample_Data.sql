@@ -178,34 +178,34 @@ VALUES (SEQ_PRODUCT_ID.NEXTVAL, 'Organic Shampoo', 14.25, 80005, 110010);
 
 SET DEFINE OFF;
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Nina', 'Walker', 'nina.walker@samplemail.com', '9810011223', DATE '1990-05-12', 'F');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Nina', 'Walker', 'ninawalker@samplemail.com', '9810011223', DATE '1990-05-12', 'F');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Liam', 'Anderson', 'liam.anderson@samplemail.com', '9823344556', DATE '1985-08-25', 'M');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Liam', 'Anderson', 'liamanderson@samplemail.com', '9823344556', DATE '1985-08-25', 'M');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Sophie', 'Reed', 'sophie.reed@domain.co', '9834455667', DATE '1993-11-10', 'F');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Sophie', 'Reed', 'sophiereed@domain.co', '9834455667', DATE '1993-11-10', 'F');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Ethan', 'Brown', 'ethan.brown@sample.org', '9845566778', DATE '1979-02-14', 'M');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Ethan', 'Brown', 'ethanbrown@sample.org', '9845566778', DATE '1979-02-14', 'M');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Zara', 'Perry', 'zara.perry@mailhost.com', '9856677889', DATE '2000-01-01', 'F');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Zara', 'Perry', 'zaraperry@mailhost.com', '9856677889', DATE '2000-01-01', 'F');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Owen', 'Foster', 'owen.foster@mailplace.com', '9867788990', DATE '1988-12-20', 'M');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Owen', 'Foster', 'owenfoster@mailplace.com', '9867788990', DATE '1988-12-20', 'M');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Isla', 'Morgan', 'isla.morgan@sample.org', '9878899001', DATE '1995-03-30', 'F');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Isla', 'Morgan', 'islamorgan@sample.org', '9878899001', DATE '1995-03-30', 'F');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Noah', 'Carter', 'noah.carter@domain.net', '9889900112', DATE '1982-07-07', 'M');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Noah', 'Carter', 'noahcarter@domain.net', '9889900112', DATE '1982-07-07', 'M');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Mila', 'Chen', 'mila.chen@example.com', '9891011223', DATE '1999-09-09', 'F');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Mila', 'Chen', 'milachen@example.com', '9891011223', DATE '1999-09-09', 'F');
 
 INSERT INTO Customers (customer_id, first_name, last_name, email, phone, dob, gender)
-VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Riley', 'Singh', 'riley.singh@example.com', '9902122334', DATE '1991-04-18', 'O');
+VALUES (SEQ_CUSTOMER_ID.NEXTVAL, 'Riley', 'Singh', 'rileysingh@example.com', '9902122334', DATE '1991-04-18', 'O');
 
 
 
