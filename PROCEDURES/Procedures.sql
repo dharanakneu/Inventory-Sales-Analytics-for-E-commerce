@@ -54,7 +54,7 @@ BEGIN
         WHERE email = p_email;
 
         -- If found, raise exception
-        RAISE ex_invalid_email_format;
+        RAISE ex_email_exists;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
             NULL; -- Email is unique, proceed
